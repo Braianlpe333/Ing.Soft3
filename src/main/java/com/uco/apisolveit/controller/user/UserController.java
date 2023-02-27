@@ -11,6 +11,7 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @GetMapping("/usuario")
     public Person getPerson(@RequestBody String email){
         return userService.get(email);
@@ -19,5 +20,15 @@ public class UserController {
     @PostMapping("/usuario")
     public Person postPerson(@Valid @RequestBody Person person){
         return userService.save(person);
+    }
+
+    @PatchMapping("/usuario")
+    public Person patchPerson(@Valid @RequestBody Person person){
+        return userService.patch(person);
+    }
+
+    @deleteMapping("/usuario")
+    public Person deletePerson(@Valid @RequestBody Person person){
+        return userService.delete(person);
     }
 }
