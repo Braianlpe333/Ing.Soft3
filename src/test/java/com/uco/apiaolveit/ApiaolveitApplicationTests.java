@@ -1,10 +1,10 @@
-package com.uco.apisolveit;
+package com.uco.apiaolveit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApisolveitApplicationTests {
+class ApiaolveitApplicationTests {
 
 	@Test
 	void contextLoads() {
