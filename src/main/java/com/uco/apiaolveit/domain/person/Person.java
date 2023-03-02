@@ -7,7 +7,7 @@ import java.lang.annotation.Documented;
 
 
 @Document(collection = "person_data")
-public class Person {
+public class        Person {
 
     @Id
     private String id;
