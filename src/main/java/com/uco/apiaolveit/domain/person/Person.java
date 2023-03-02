@@ -15,8 +15,8 @@ public class Person {
     private String surname;
     private String email;
     private String password;
-    private String numeroTelefono;
-    private String campoEmpleo;
+    private String phone;
+    private String employmentField;
 
     public Person(){
     }
@@ -36,12 +36,12 @@ public class Person {
     public String getPassword(){return password;}
 
     public void setPassword(String password){this.password = password;}
-    public String getNumeroTelefono(){return numeroTelefono;}
+    public String getPhone(){return phone;}
 
-    public void setNumeroTelefono(String numeroTelefono){this.numeroTelefono = numeroTelefono;}
-    public String getCampoEmpleo(){return campoEmpleo;}
+    public void setPhone(String phone){this.phone = phone;}
+    public String getEmploymentField(){return employmentField;}
 
-    public void setCampoEmpleo(String campoEmpleo){this.campoEmpleo = campoEmpleo;}
+    public void setEmploymentField(String employmentField){this.employmentField = employmentField;}
 
     @Override
     public String toString(){
@@ -51,8 +51,8 @@ public class Person {
                 ", surname='"+ surname + '\''+
                 ", email='"+ email + '\''+
                 ", password='"+ password + '\''+
-                ", numeroTelefono='"+ numeroTelefono + '\''+
-                ", campoEmpleo'"+ campoEmpleo + '\''+
+                ", phone='"+ phone + '\''+
+                ", employmentField'"+ employmentField + '\''+
                 '}';
     }
 }
