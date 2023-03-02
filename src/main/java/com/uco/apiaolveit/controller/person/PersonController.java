@@ -1,4 +1,4 @@
-package com.uco.apisolveit.controller.user;
+package com.uco.apisolveit.controller.person;
 
 import com.uco.apiaolveit.domain.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
