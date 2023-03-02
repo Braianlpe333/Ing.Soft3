@@ -1,14 +1,14 @@
 package com.uco.apisolveit.controller.user;
 
+import com.uco.apiaolveit.domain.person.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/rest")
-public class UserController {
+public class PersonController {
     @Autowired
     private UserService userService;
 
