@@ -4,6 +4,7 @@ import com.azure.cosmos.implementation.Document;
 import com.azure.cosmos.implementation.Strings;
 import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.domain.publication.Publication;
+import com.uco.apiaolveit.domain.publicationType.PublicationType;
 import com.uco.apiaolveit.service.publication.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -32,7 +33,7 @@ public class PublicationController {
         return publicationService.get(title);
     }
     @GetMapping("/publication/type")
-    public Flux<Publication> getPublication(@RequestParam(required = true) String type){
+    public Flux<Publication> getPublication(@RequestParam(required = true) PublicationType type){
         return publicationService.get(type);
     }
     @GetMapping("/publication/date")

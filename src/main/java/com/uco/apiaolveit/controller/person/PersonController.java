@@ -1,8 +1,10 @@
-package com.uco.apisolveit.controller.person;
+package com.uco.apiaolveit.controller.person;
 
 import com.uco.apiaolveit.domain.person.Person;
+import com.uco.apiaolveit.service.person.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
@@ -10,25 +12,25 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/rest")
 public class PersonController {
     @Autowired
-    private UserService userService;
+    private PersonService personService;
 
     @GetMapping("/usuario")
-    public Person getPerson(@RequestBody String email){
-        return userService.get(email);
+    public Mono<Person> getPerson(@RequestBody String email){
+        return personService.get(email);
     }
 
     @PostMapping("/usuario")
-    public Person postPerson(@Valid @RequestBody Person person){
-        return userService.save(person);
+    public Mono<Person> postPerson(@Valid @RequestBody Person person){
+        return personService.save(person);
     }
 
     @PatchMapping("/usuario")
-    public Person patchPerson(@Valid @RequestBody Person person){
-        return userService.patch(person);
+    public Mono<Person> patchPerson(@Valid @RequestBody String email, Person person){
+        return personService.patch(email,person);
     }
 
-    @deleteMapping("/usuario")
-    public Person deletePerson(@Valid @RequestBody Person person){
-        return userService.delete(person);
+    @DeleteMapping("/usuario")
+    public Mono<Void> deletePerson(@Valid @RequestBody String email){
+        return personService.delete(email);
     }
 }

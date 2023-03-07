@@ -21,7 +21,7 @@ public class PublicationService {
     public Flux<Publication> get(String title) {
         return publicationRepository.findAll(title);
     }
-    public Flux<Publication> get(String type) {
+    public Flux<Publication> get(PublacationType type) {
         return publicationRepository.findAll(type);
     }
     public Flux<Publication> get(Date date) {
