@@ -1,11 +1,13 @@
 package com.uco.apiaolveit.service.publication;
 
+import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.domain.publication.Publication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+import com.uco.apiaolveit.repository.publication.IPublicationRepository;
+import com.uco.apiaolveit.domain.publicationType.PublicationType;
 import java.util.Date;
 
 import static com.azure.cosmos.implementation.directconnectivity.rntbd.RntbdConstants.RntbdRequestHeader.Date;
@@ -13,29 +15,36 @@ import static com.azure.cosmos.implementation.directconnectivity.rntbd.RntbdCons
 @Service
 public class PublicationService {
     @Autowired
-    private PublicationRepository publicationRepository;
+    private IPublicationRepository publicationRepository;
 
     public Flux<Publication> get() {
         return publicationRepository.findAll();
     }
     public Flux<Publication> get(String title) {
-        return publicationRepository.findAll(title);
+        return publicationRepository.findByTitle(title);
     }
-    public Flux<Publication> get(PublacationType type) {
-        return publicationRepository.findAll(type);
+    public Flux<Publication> get(PublicationType type) {
+        return publicationRepository.findByType(type);
     }
     public Flux<Publication> get(Date date) {
-        return publicationRepository.findAll(date);
+        return publicationRepository.findBydate(date);
     }
     public Flux<Publication> get(String title, String type, Date date) {
-        return publicationRepository.findAll(title,type,date);
+        return publicationRepository.findByTitleTypeDate(title,type,date);
     }
-    public Flux<Publication> get(String mail) {
-        return publicationRepository.findAll();
+    public Flux<Publication> get(Publication publication) {
+        return publicationRepository.findByPublication(publication);
     }
 
     public Mono<Publication> save(Publication publication){
         return publicationRepository.save(publication);
     }
 
+    public Mono<Publication>  patch(Publication publication){
+        return publicationRepository.findByPublication(publication).flatMap(existingClient -> {return publicationRepository.save(publication);});
+    }
+
+    public Mono<Void> delete(Publication publication){
+        return publicationRepository.findByPublication(publication).flatMap(existingPerson -> publicationRepository.deleteByPublication(publication));
+    }
 }

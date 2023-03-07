@@ -44,19 +44,11 @@ public class PublicationController {
     public Flux<Publication> getPublication(@RequestParam(required = true) String title, String type, Date date){
         return publicationService.get(title,type,date);
     }
-    @GetMapping("/publication/user")
-    public Flux<Publication> getPublication(@RequestParam(required = true) String mail){
-        return publicationService.get(mail);
-    }
-
-
 
     @PostMapping("/publication")
-    public Mono<Publication> postPublication(@RequestBody PublicationService publication){
+    public Mono<Publication> postPublication(@RequestBody Publication publication){
         return publicationService.save(publication);
     }
-
-
 
     @PatchMapping("/publication")
     public PublicationService patchPublication(@RequestBody PublicationService publication){
