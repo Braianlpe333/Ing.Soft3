@@ -1,5 +1,6 @@
 package com.uco.apiaolveit.repository.publication;
 import com.uco.apiaolveit.domain.publication.Publication;
+import com.uco.apiaolveit.domain.publicationType.PublicationType;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
@@ -11,5 +12,9 @@ public interface IPublicationRepository extends ReactiveCrudRepository<Publicati
     Mono<Publication> findByID(String id, String category);
 
     @Query("{'title': ?0}")
-    Flux<Publication> findByTitle(String id, String title);
+    Flux<Publication> findByTitle( String title);
+
+
+    @Query("{'type': ?0}")
+    Flux<Publication> findByType( PublicationType type);
 }
