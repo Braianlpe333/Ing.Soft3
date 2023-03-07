@@ -7,5 +7,5 @@ import reactor.core.publisher.Mono;
 public interface IPublicationRepository extends ReactiveCrudRepository<Publication, String> {
 
     @Query("{ 'id': ?0, 'category': ?1}")
-    Mono<Publication> findByDocument(String id, String category);
+    Mono<Publication> findByID(String id, String category);
 }

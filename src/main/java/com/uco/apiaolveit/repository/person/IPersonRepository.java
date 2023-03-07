@@ -5,6 +5,8 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
 public interface IPersonRepository extends ReactiveCrudRepository<Person, String > {
-    @Query("{ 'id': ?0, 'email': ?1}")
-    Mono<Person> findByDocument(String id, String email);
+
+
+    @Query("{'email': ?0}")
+    Mono<Person> findByEmail(String email);
 }
