@@ -32,19 +32,17 @@ public class PublicationService {
     public Flux<Publication> get(String title, String type, Date date) {
         return publicationRepository.findByTitleTypeDate(title,type,date);
     }
-    public Flux<Publication> get(Publication publication) {
-        return publicationRepository.findByPublication(publication);
-    }
+
 
     public Mono<Publication> save(Publication publication){
         return publicationRepository.save(publication);
     }
 
-    public Mono<Publication>  patch(Publication publication){
-        return publicationRepository.findByPublication(publication).flatMap(existingClient -> {return publicationRepository.save(publication);});
+    public Mono<Publication>  patch(String publicationId, Publication publication){
+        return publicationRepository.findById(publicationId).flatMap(existingClient -> {return publicationRepository.save(publication);});
     }
 
-    public Mono<Void> delete(Publication publication){
-        return publicationRepository.findByPublication(publication).flatMap(existingPerson -> publicationRepository.deleteByPublication(publication));
+    public Mono<Void> delete(String publicationId){
+        return publicationRepository.findById(publicationId).flatMap(existingPerson -> publicationRepository.deleteById(publicationId));
     }
 }

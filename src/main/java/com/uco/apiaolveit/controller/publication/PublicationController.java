@@ -51,14 +51,14 @@ public class PublicationController {
     }
 
     @PatchMapping("/publication")
-    public PublicationService patchPublication(@RequestBody PublicationService publication){
-        return publicationService.patch(publication);
+    public Mono<Publication> patchPublication(@RequestBody String id,Publication publication){
+        return publicationService.patch(id,publication);
     }
 
 
     @DeleteMapping("/publication")
-    public  PublicationService deletePublication(@RequestParam(required = true)String publicationId){
-        return publicationService.delete(publication);
+    public  Mono<Void> deletePublication(@RequestParam(required = true)String publicationId){
+        return publicationService.delete(publicationId);
     }
 
 
