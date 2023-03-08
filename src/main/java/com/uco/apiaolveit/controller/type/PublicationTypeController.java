@@ -12,12 +12,12 @@ public class PublicationTypeController {
     @Autowired
     private PublicationTypeService typeService;
 
-    @GetMapping("/publication")
+    @GetMapping("/publicationType")
     public Flux<PublicationType> get(){
         return typeService.get();
     }
-    @GetMapping("/publication/one")
-    public Mono<PublicationType> get(@RequestBody String PublicationTypeId){
+    @GetMapping("/publicationType/{id}")
+    public Mono<PublicationType> get(String PublicationTypeId){
         return typeService.get(PublicationTypeId);
     }
 
