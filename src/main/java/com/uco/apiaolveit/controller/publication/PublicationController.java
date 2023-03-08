@@ -1,4 +1,4 @@
-package com.uco.apisolveit.controller.publication;
+package com.uco.apiaolveit.controller.publication;
 
 import com.azure.cosmos.implementation.Document;
 import com.azure.cosmos.implementation.Strings;
@@ -41,7 +41,7 @@ public class PublicationController {
         return publicationService.get(date);
     }
     @GetMapping("/publication/some")
-    public Flux<Publication> getPublication(@RequestParam(required = true) String title, String type, Date date){
+    public Flux<Publication> getPublication(@RequestParam(required = true) String title, PublicationType type, Date date){
         return publicationService.get(title,type,date);
     }
 

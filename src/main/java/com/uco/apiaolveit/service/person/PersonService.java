@@ -2,17 +2,14 @@ package com.uco.apiaolveit.service.person;
 
 import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.util.UtilString;
-import org.apache.coyote.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import com.uco.apiaolveit.repository.person.IPersonRepository;
 import com.uco.apiaolveit.util.Constant;
 
 import java.util.Objects;
 
-import static com.azure.spring.cloud.service.implementation.kafka.AzureKafkaPropertiesUtils.AzureKafkaPasswordlessPropertiesMapping.clientId;
 
 @Service
 public class PersonService {
