@@ -17,7 +17,7 @@ public class PublicationTypeController {
         return typeService.get();
     }
     @GetMapping("/publication/one")
-    public Mono<PublicationType> get(String PublicationTypeId){
+    public Mono<PublicationType> get(@RequestBody String PublicationTypeId){
         return typeService.get(PublicationTypeId);
     }
 
