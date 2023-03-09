@@ -13,7 +13,6 @@ import com.uco.apiaolveit.domain.publicationType.PublicationType;
 import java.util.Date;
 import java.util.Objects;
 
-import static com.azure.cosmos.implementation.directconnectivity.rntbd.RntbdConstants.RntbdRequestHeader.Date;
 
 @Service
 public class PublicationService {

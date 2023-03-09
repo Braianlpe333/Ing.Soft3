@@ -1,18 +1,14 @@
 package com.uco.apiaolveit.controller.publication;
 
-import com.azure.cosmos.implementation.Document;
-import com.azure.cosmos.implementation.Strings;
-import com.uco.apiaolveit.domain.person.Person;
+
 import com.uco.apiaolveit.domain.publication.Publication;
 import com.uco.apiaolveit.domain.publicationType.PublicationType;
 import com.uco.apiaolveit.service.publication.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
 import java.util.Date;
 
 @RestController

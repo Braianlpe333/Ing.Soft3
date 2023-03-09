@@ -7,8 +7,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Date;
-
-public interface IPublicationRepository extends ReactiveCrudRepository<Publication, String> {
+public interface IPublicationRepository extends ReactiveCrudRepository<Publication, String>
+{
 
     @Query("{ 'id': ?0, 'category': ?1}")
     Mono<Publication> findByID(String id, String category);
