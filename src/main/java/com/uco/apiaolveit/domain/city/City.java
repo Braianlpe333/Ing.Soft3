@@ -3,7 +3,7 @@ package com.uco.apiaolveit.domain.city;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "city_data")
+//@Document(collection = "city_data")
 public class City {
     @Id
     private String id;
