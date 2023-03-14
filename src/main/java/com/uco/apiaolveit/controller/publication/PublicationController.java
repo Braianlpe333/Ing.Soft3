@@ -24,21 +24,18 @@ public class PublicationController {
     public Flux<Publication>getPublication(){
         return publicationService.get();
     }
-    @GetMapping("/publication/tittle")
+    @GetMapping(value ={"/publication/tittle","/publication/type"})
     public Flux<Publication> getPublication(@RequestParam(required = true) String title){
         return publicationService.get(title);
     }
-    @GetMapping("/publication/type")
-    public Flux<Publication> getPublication(@RequestParam(required = true) PublicationType type){
-        return publicationService.get(type);
-    }
+
     @GetMapping("/publication/date")
     public Flux<Publication> getPublication(@RequestParam(required = true) Date date){
         return publicationService.get(date);
     }
     @GetMapping("/publication/some")
-    public Flux<Publication> getPublication(@RequestParam(required = true) String title, PublicationType type, Date date){
-        return publicationService.get(title,type,date);
+    public Flux<Publication> getPublication(@RequestParam(required = true) String title, String category, Date date){
+        return publicationService.get(title,category,date);
     }
 
     @PostMapping("/publication")

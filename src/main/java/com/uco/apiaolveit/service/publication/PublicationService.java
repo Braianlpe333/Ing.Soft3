@@ -39,13 +39,13 @@ public class PublicationService {
         }
         return publicationRepository.findBydate(date);
     }
-    public Flux<Publication> get(String title, PublicationType type, Date date) {
-        if(!Objects.isNull(title) && !Objects.isNull(type) &&!Objects.isNull(date)){
+    public Flux<Publication> get(String title, String category, Date date) {
+        if(!Objects.isNull(title) && !Objects.isNull(category) &&!Objects.isNull(date)){
             UtilString.requieresNoNullOrNoEmpty(title,String.format(Constant.TXT_EXPECT_VALUE));
-            UtilString.requieresNoNullOrNoEmpty(type.getDescription(),String.format(Constant.TXT_EXPECT_VALUE));
+            UtilString.requieresNoNullOrNoEmpty(category,String.format(Constant.TXT_EXPECT_VALUE));
             UtilString.requieresNoNullOrNoEmpty(date.toString(),String.format(Constant.TXT_EXPECT_VALUE));
         }
-        return publicationRepository.findByTitleTypeDate(title,type,date);
+        return publicationRepository.findByTitleTypeDate(title,category,date);
     }
 
 
