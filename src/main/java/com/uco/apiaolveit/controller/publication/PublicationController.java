@@ -3,6 +3,7 @@ package com.uco.apiaolveit.controller.publication;
 
 import com.uco.apiaolveit.domain.publication.Publication;
 import com.uco.apiaolveit.domain.publicationtype.PublicationType;
+import com.uco.apiaolveit.dto.publication.PublicationDTO;
 import com.uco.apiaolveit.service.publication.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +40,24 @@ public class PublicationController {
     }
 
     @PostMapping("/publication")
-    public Mono<Publication> postPublication(@RequestBody Publication publication){
+    public Mono<Publication> postPublication(@RequestBody PublicationDTO publicationDTO){
+        Publication publication = new Publication();
+        publication.setId(publicationDTO.getId());
+        publication.setPublicationTitle(publicationDTO.getPublicationTitle());
+        publication.setDescription(publicationDTO.getDescription());
+        publication.setCategory(publicationDTO.getCategory());
+        publication.setPhone(publicationDTO.getPhone());
         return publicationService.save(publication);
     }
 
     @PatchMapping("/publication")
-    public Mono<Publication> patchPublication(@RequestBody String id,Publication publication){
+    public Mono<Publication> patchPublication(@RequestBody String id,PublicationDTO publicationDTO){
+        Publication publication = new Publication();
+        publication.setId(publicationDTO.getId());
+        publication.setPublicationTitle(publicationDTO.getPublicationTitle());
+        publication.setDescription(publicationDTO.getDescription());
+        publication.setCategory(publicationDTO.getCategory());
+        publication.setPhone(publicationDTO.getPhone());
         return publicationService.patch(id,publication);
     }
 
