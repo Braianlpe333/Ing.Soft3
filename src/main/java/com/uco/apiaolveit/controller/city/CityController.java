@@ -24,6 +24,7 @@ public class CityController {
 
     @GetMapping("/City/One")
     public Mono<City> get(@RequestBody String cityId){
+
         return cityService.get(cityId);
     }
 }

@@ -20,7 +20,7 @@ public class PersonService {
          if(!Objects.isNull(email)){
              UtilString.requiresPattern(email, Constant.TXT_PATTER_EMAIL,String.format(Constant.TXT_BAD_EMAIL));
          }
-        return personrepository.findById(email);
+        return personrepository.findByEmail(email);
     }
     public Mono<Person> save(Person person){
         validationData(person);

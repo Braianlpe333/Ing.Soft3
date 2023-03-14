@@ -23,7 +23,7 @@ public class CityService {
         if(!Objects.isNull(CityId)){
             UtilString.requieresNoNullOrNoEmpty(CityId,String.format(Constant.TXT_EXPECT_VALUE, CityId));
         }
-        return cityRepository.findById(CityId);
+        return cityRepository.findByName(CityId);
     }
 
 }
