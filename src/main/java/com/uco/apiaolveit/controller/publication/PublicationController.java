@@ -2,7 +2,6 @@ package com.uco.apiaolveit.controller.publication;
 
 
 import com.uco.apiaolveit.domain.publication.Publication;
-import com.uco.apiaolveit.domain.publicationtype.PublicationType;
 import com.uco.apiaolveit.dto.publication.PublicationDTO;
 import com.uco.apiaolveit.service.publication.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +25,16 @@ public class PublicationController {
         return publicationService.get();
     }
     @GetMapping(value ={"/publication/tittle","/publication/type"})
-    public Flux<Publication> getPublication(@RequestParam(required = true) String title){
+    public Flux<Publication> getPublication(@RequestParam String title){
         return publicationService.get(title);
     }
 
     @GetMapping("/publication/date")
-    public Flux<Publication> getPublication(@RequestParam(required = true) Date date){
+    public Flux<Publication> getPublication(@RequestParam Date date){
         return publicationService.get(date);
     }
     @GetMapping("/publication/some")
-    public Flux<Publication> getPublication(@RequestParam(required = true) String title, String category, Date date){
+    public Flux<Publication> getPublication(@RequestParam String title, String category, Date date){
         return publicationService.get(title,category,date);
     }
 
@@ -63,7 +62,7 @@ public class PublicationController {
 
 
     @DeleteMapping("/publication")
-    public  Mono<Void> deletePublication(@RequestParam(required = true)String publicationId){
+    public  Mono<Void> deletePublication(@RequestParam String publicationId){
         return publicationService.delete(publicationId);
     }
 
