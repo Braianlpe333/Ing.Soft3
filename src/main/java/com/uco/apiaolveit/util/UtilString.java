@@ -9,6 +9,9 @@ public final class UtilString {
         }
     }
 
+    private UtilString() {
+    }
+
     public static void requieresLength(String s, int lengthMin, int lengthMax, String message) {
         if (!(s.length() >= lengthMin && s.length() <= lengthMax)) {
             throw new IllegalArgumentException(message);
@@ -16,10 +19,8 @@ public final class UtilString {
     }
 
     public static boolean isEmptyOrNull(String val) {
-        if (val == null || val.trim().isEmpty()) {
-            return true;
-        }
-        return false;
+
+        return val == null|| val.trim().isEmpty();
     }
 
     public static void requieresNoNullOrNoEmpty(String val, String mensaje) {

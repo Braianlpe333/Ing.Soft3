@@ -19,11 +19,18 @@ public class        Person {
     private String employmentField;
 
     public Person(){
+        this.id = " ";
+        this.name = " ";
+        this.surname = " ";
+        this.email = " ";
+        this.password = " ";
+        this. phone = " ";
+        this.employmentField = " ";
     }
 
     public String getId(){return id;}
 
-    public void setId(String name){this.id = id;}
+    public void setId(String id){this.id = id;}
     public String getName(){return name;}
 
     public void setName(String name){this.name = name;}

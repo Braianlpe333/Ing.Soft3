@@ -1,6 +1,5 @@
 package com.uco.apiaolveit.service.publication;
 
-import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.domain.publication.Publication;
 import com.uco.apiaolveit.util.Constant;
 import com.uco.apiaolveit.util.UtilString;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import com.uco.apiaolveit.repository.publication.IPublicationRepository;
-import com.uco.apiaolveit.domain.publicationType.PublicationType;
+import com.uco.apiaolveit.domain.publicationtype.PublicationType;
 import java.util.Date;
 import java.util.Objects;
 

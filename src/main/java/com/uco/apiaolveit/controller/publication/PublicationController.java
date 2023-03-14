@@ -2,7 +2,7 @@ package com.uco.apiaolveit.controller.publication;
 
 
 import com.uco.apiaolveit.domain.publication.Publication;
-import com.uco.apiaolveit.domain.publicationType.PublicationType;
+import com.uco.apiaolveit.domain.publicationtype.PublicationType;
 import com.uco.apiaolveit.service.publication.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

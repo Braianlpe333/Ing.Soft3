@@ -1,5 +1,5 @@
 package com.uco.apiaolveit.controller.type;
-import com.uco.apiaolveit.domain.publicationType.PublicationType;
+import com.uco.apiaolveit.domain.publicationtype.PublicationType;
 import com.uco.apiaolveit.service.type.PublicationTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +17,8 @@ public class PublicationTypeController {
         return typeService.get();
     }
     @GetMapping("/publicationType/{id}")
-    public Mono<PublicationType> get(String PublicationTypeId){
-        return typeService.get(PublicationTypeId);
+    public Mono<PublicationType> get(String publicationTypeId){
+        return typeService.get(publicationTypeId);
     }
 
 }

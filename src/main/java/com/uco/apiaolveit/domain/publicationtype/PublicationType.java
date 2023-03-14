@@ -1,4 +1,4 @@
-package com.uco.apiaolveit.domain.publicationType;
+package com.uco.apiaolveit.domain.publicationtype;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

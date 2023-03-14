@@ -1,6 +1,6 @@
 package com.uco.apiaolveit.service.type;
 
-import com.uco.apiaolveit.domain.publicationType.PublicationType;
+import com.uco.apiaolveit.domain.publicationtype.PublicationType;
 import com.uco.apiaolveit.repository.type.IPublicationTypeRepository;
 import com.uco.apiaolveit.util.Constant;
 import com.uco.apiaolveit.util.UtilString;
@@ -21,6 +21,6 @@ public class PublicationTypeService {
         if(!Objects.isNull(publicationTypeId)){
             UtilString.requieresNoNullOrNoEmpty(publicationTypeId,String.format(Constant.TXT_EXPECT_VALUE, publicationTypeId));
         }
-        return publicationTypeRepository.findById(publicationTypeId);
+        return publicationTypeRepository.findById(!Objects.isNull(publicationTypeId)? publicationTypeId:" ");
     }
 }

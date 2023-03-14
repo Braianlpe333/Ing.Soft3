@@ -14,6 +14,11 @@ public class Publication {
     private String category;
 
     public Publication(){
+        this.id = " ";
+        this.publicationTitle = " ";
+        this.description= " ";
+        this.phone=" ";
+        this.category = " ";
     }
 
     public String getId(){return id;}

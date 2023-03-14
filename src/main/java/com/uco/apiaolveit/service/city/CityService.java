@@ -19,11 +19,11 @@ public class CityService {
     public Flux<City> get() {
         return cityRepository.findAll();
     }
-    public Mono<City> get(String CityId) {
-        if(!Objects.isNull(CityId)){
-            UtilString.requieresNoNullOrNoEmpty(CityId,String.format(Constant.TXT_EXPECT_VALUE, CityId));
+    public Mono<City> get(String cityId) {
+        if(!Objects.isNull(cityId)){
+            UtilString.requieresNoNullOrNoEmpty(cityId,String.format(Constant.TXT_EXPECT_VALUE, cityId));
         }
-        return cityRepository.findByName(CityId);
+        return cityRepository.findByName(cityId);
     }
 
 }
