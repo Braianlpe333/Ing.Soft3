@@ -4,17 +4,25 @@ import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.util.UtilString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import com.uco.apiaolveit.repository.person.IPersonRepository;
 import com.uco.apiaolveit.util.Constant;
 
 import java.util.Objects;
 
+import static com.uco.apiaolveit.util.UtilString.isEmptyOrNull;
+
 
 @Service
 public class PersonService {
    @Autowired
     private IPersonRepository personrepository;
+
+    public Flux<Person> get(){
+
+        return personrepository.findAll();
+    }
 
     public Mono<Person> get(String email){
          if(!Objects.isNull(email)){
@@ -28,7 +36,7 @@ public class PersonService {
         return personrepository.save(person);
     }
 
-    public Mono<Person>  patch(String email,Person person){
+    public Mono<Person>  put(String email,Person person){
         validationData(person);
 
         return personrepository.findByEmail(email).flatMap(existingPerson -> {
@@ -39,6 +47,20 @@ public class PersonService {
             existingPerson.setPhone(Objects.isNull(person.getPhone()) ? existingPerson.getPhone() : person.getPhone());
             existingPerson.setPassword(person.getPassword().isEmpty() ? existingPerson.getPassword() : person.getPassword());
             existingPerson.setPassword(person.getEmploymentField().isEmpty() ? existingPerson.getEmploymentField() : person.getEmploymentField());
+
+            return personrepository.save(existingPerson);
+        });
+    }
+    public Mono<Person>  patch(String email,Person person){
+
+        return personrepository.findByEmail(email).flatMap(existingPerson -> {
+
+            existingPerson.setName(isEmptyOrNull( person.getName()) ? existingPerson.getName() : person.getName());
+            existingPerson.setSurname(isEmptyOrNull(person.getSurname()) ? existingPerson.getSurname() : person.getSurname());
+            existingPerson.setEmail(isEmptyOrNull(person.getEmail()) ? existingPerson.getEmail() : person.getEmail());
+            existingPerson.setPhone(isEmptyOrNull(person.getPhone()) ? existingPerson.getPhone() : person.getPhone());
+            existingPerson.setPassword(isEmptyOrNull(person.getPassword()) ? existingPerson.getPassword() : person.getPassword());
+            existingPerson.setPassword(isEmptyOrNull(person.getEmploymentField()) ? existingPerson.getEmploymentField() : person.getEmploymentField());
 
             return personrepository.save(existingPerson);
         });
@@ -65,4 +87,5 @@ public class PersonService {
         UtilString.requieresLength(person.getPhone(), 10, 10,String.format(Constant.TXT_NO_LENGTH_REQUIERED, person.getPhone()));
 
     }
+
 }
