@@ -11,7 +11,9 @@ public class RedPerson {
     private String username;
     private String password;
 
-    public RedPerson(){}
+    public RedPerson(){
+        //Instant the class
+    }
 
     public String getId() {
         return id;

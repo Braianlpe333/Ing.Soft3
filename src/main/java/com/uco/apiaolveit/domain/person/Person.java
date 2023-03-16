@@ -1,5 +1,7 @@
 package com.uco.apiaolveit.domain.person;
 
+import com.uco.apiaolveit.dto.person.PersonDTO;
+import com.uco.apiaolveit.singleton.person.PersonSingleton;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -61,6 +63,17 @@ public class        Person {
                 ", phone='"+ phone + '\''+
                 ", employmentField'"+ employmentField + '\''+
                 '}';
+    }
+    public static Person setData(PersonDTO personDTO){
+        Person person = PersonSingleton.getInstance();
+        person.setId(personDTO.getId());
+        person.setName(personDTO.getName());
+        person.setSurname(personDTO.getSurname());
+        person.setPassword(personDTO.getPassword());
+        person.setPhone(personDTO.getPhone());
+        person.setEmail(personDTO.getEmail());
+        person.setEmploymentField(personDTO.getEmploymentField());
+        return person;
     }
 
 }

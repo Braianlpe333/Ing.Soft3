@@ -3,6 +3,7 @@ package com.uco.apiaolveit.controller.person;
 import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.dto.person.PersonDTO;
 import com.uco.apiaolveit.service.person.PersonService;
+import com.uco.apiaolveit.singleton.person.PersonSingleton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,15 +54,7 @@ public class PersonController {
     }
     @PatchMapping("/user")
     public Mono<ResponseEntity<Person>> patchPerson( @RequestParam String email,@Valid @RequestBody PersonDTO personDTO){
-        Person person = new Person();
-        person.setId(personDTO.getId());
-        person.setName(personDTO.getName());
-        person.setSurname(personDTO.getSurname());
-        person.setPassword(personDTO.getPassword());
-        person.setPhone(personDTO.getPhone());
-        person.setEmail(personDTO.getEmail());
-        person.setEmploymentField(personDTO.getEmploymentField());
-        return personService.patch(email,person).map(updatePerson -> new ResponseEntity<>(updatePerson, HttpStatus.OK)).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return personService.patch(email,Person.setData(personDTO)).map(updatePerson -> new ResponseEntity<>(updatePerson, HttpStatus.OK)).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/user")
