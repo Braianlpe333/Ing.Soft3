@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
@@ -16,6 +17,10 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+    @GetMapping("/user")
+    public Flux<Person> getPerson(){
+        return personService.get();
+    }
     @GetMapping("/user/{email}")
     public Mono<Person> getPerson(@PathVariable("email") String email){
         return personService.get(email);
@@ -36,6 +41,18 @@ public class PersonController {
 
     @PutMapping("/user")
     public Mono<ResponseEntity<Person>> putPerson( @RequestParam String email,@Valid @RequestBody PersonDTO personDTO){
+        Person person = new Person();
+        person.setId(personDTO.getId());
+        person.setName(personDTO.getName());
+        person.setSurname(personDTO.getSurname());
+        person.setPassword(personDTO.getPassword());
+        person.setPhone(personDTO.getPhone());
+        person.setEmail(personDTO.getEmail());
+        person.setEmploymentField(personDTO.getEmploymentField());
+        return personService.put(email,person).map(updatePerson -> new ResponseEntity<>(updatePerson, HttpStatus.OK)).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    @PatchMapping("/user")
+    public Mono<ResponseEntity<Person>> patchPerson( @RequestParam String email,@Valid @RequestBody PersonDTO personDTO){
         Person person = new Person();
         person.setId(personDTO.getId());
         person.setName(personDTO.getName());
