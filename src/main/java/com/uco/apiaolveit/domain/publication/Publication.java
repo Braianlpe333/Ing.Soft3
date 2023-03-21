@@ -1,5 +1,10 @@
 package com.uco.apiaolveit.domain.publication;
 
+import com.uco.apiaolveit.domain.person.Person;
+import com.uco.apiaolveit.dto.person.PersonDTO;
+import com.uco.apiaolveit.dto.publication.PublicationDTO;
+import com.uco.apiaolveit.singleton.person.PersonSingleton;
+import com.uco.apiaolveit.singleton.publication.PublicationSingleton;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -51,6 +56,14 @@ public class Publication {
                 ", category='"+ category + '\''+
                 '}';
     }
-
+    public static Publication setData(PublicationDTO publicationDTO){
+        Publication publication = PublicationSingleton.getInstance();
+        publication.setId(publicationDTO.getId());
+        publication.setPublicationTitle(publicationDTO.getPublicationTitle());
+        publication.setPhone(publicationDTO.getPhone());
+        publication.setCategory(publicationDTO.getCategory());
+        publication.setDescription(publicationDTO.getDescription());
+        return publication;
+    }
 
 }
