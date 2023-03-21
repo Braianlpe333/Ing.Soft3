@@ -1,7 +1,6 @@
 package com.uco.apiaolveit.controller.publication;
 
 
-import com.uco.apiaolveit.domain.person.Person;
 import com.uco.apiaolveit.domain.publication.Publication;
 import com.uco.apiaolveit.dto.publication.PublicationDTO;
 import com.uco.apiaolveit.service.publication.PublicationService;

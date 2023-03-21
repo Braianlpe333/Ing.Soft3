@@ -3,7 +3,6 @@ package com.uco.apiaolveit.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -19,9 +18,9 @@ public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -3766952519372394630L;
 
-    public static final long JWT_TOKEN_VALIDITY = 5*60*60;
+    public static final long JWT_TOKEN_VALIDITY = 18000;
 
-
+    @Value("${jwt.secret}")
     private String secret;
 
     public String getUsernameFromToken(String token) {
@@ -50,10 +49,6 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    private Boolean ignoreTokenExpiration(String token) {
-        // here you specify tokens, for that the expiration is ignored
-        return false;
-    }
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
@@ -67,7 +62,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public Boolean canTokenBeRefreshed(String token) {
-        return (!isTokenExpired(token) || ignoreTokenExpiration(token));
+        return (!isTokenExpired(token) /*|| ignoreTokenExpiration(token)*/);
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {

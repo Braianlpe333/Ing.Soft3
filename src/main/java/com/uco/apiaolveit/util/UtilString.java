@@ -2,7 +2,8 @@ package com.uco.apiaolveit.util;
 
 
 public final class UtilString {
-
+    public static final String EMPTY = "";
+    public static final String SPACE = " ";
     public static void requiresPattern (String s, String pattern, String message) {
         if (!s.matches(pattern)) {
             throw new IllegalArgumentException(message);
@@ -29,4 +30,5 @@ public final class UtilString {
         }
 
     }
+
 }

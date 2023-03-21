@@ -1,6 +1,7 @@
 package com.uco.apiaolveit.jwt;
 
 import com.uco.apiaolveit.service.JwtUserDetailsService;
+import com.uco.apiaolveit.util.exception.GeneralException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,9 +37,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token");
+
+                throw GeneralException.build("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
+
+                throw GeneralException.build("JWT Token has expired");
             }
         } else {
             logger.warn("JWT Token does not begin with Bearer String");

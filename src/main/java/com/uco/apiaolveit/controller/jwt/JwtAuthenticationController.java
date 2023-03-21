@@ -3,8 +3,10 @@ package com.uco.apiaolveit.controller.jwt;
 import com.uco.apiaolveit.domain.JwtRequest;
 import com.uco.apiaolveit.domain.JwtResponse;
 import com.uco.apiaolveit.domain.RedPerson;
+import com.uco.apiaolveit.dto.redperson.RedPersonDTO;
 import com.uco.apiaolveit.jwt.JwtTokenUtil;
 import com.uco.apiaolveit.service.JwtUserDetailsService;
+import com.uco.apiaolveit.util.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,22 +25,22 @@ import java.util.Objects;
 @RequestMapping("/authenticate")
 public class JwtAuthenticationController {
 
-    //@Autowired
+    @Autowired
     private AuthenticationManager authenticationManager;
 
-    //@Autowired
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    //@Autowired
+    @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    //@Autowired
+    @Autowired
     private UserDetailsService jwtInMemoryUserDetailsService;
 
     //@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     @PostMapping("/auth")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
-            throws Exception {
+    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
+            throws GeneralException {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -46,25 +48,25 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-        System.out.println(token);
+
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
     @PostMapping("/register")
-    public Mono<RedPerson> saveUser(@RequestBody RedPerson user)  {
-        return userDetailsService.save(user);
+    public Mono<RedPerson> saveUser(@RequestBody RedPersonDTO userDTO)  {
+        return userDetailsService.save(RedPerson.setData(userDTO));
     }
 
-    private void authenticate(String username, String password) throws Exception {
+    private void authenticate(String username, String password) throws GeneralException {
         Objects.requireNonNull(username);
         Objects.requireNonNull(password);
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
+            throw GeneralException.build("USER_DISABLED",e);
         } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+            throw GeneralException.build("INVALID_CREDENTIALS", e);
         }
     }
 }

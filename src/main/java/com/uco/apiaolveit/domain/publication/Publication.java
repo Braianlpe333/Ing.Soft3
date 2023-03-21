@@ -1,9 +1,6 @@
 package com.uco.apiaolveit.domain.publication;
 
-import com.uco.apiaolveit.domain.person.Person;
-import com.uco.apiaolveit.dto.person.PersonDTO;
 import com.uco.apiaolveit.dto.publication.PublicationDTO;
-import com.uco.apiaolveit.singleton.person.PersonSingleton;
 import com.uco.apiaolveit.singleton.publication.PublicationSingleton;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

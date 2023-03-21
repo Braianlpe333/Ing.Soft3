@@ -1,5 +1,7 @@
 package com.uco.apiaolveit.domain;
 
+import com.uco.apiaolveit.dto.redperson.RedPersonDTO;
+import com.uco.apiaolveit.singleton.redperson.RedPersonSingleton;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -46,5 +48,12 @@ public class RedPerson {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+    public static RedPerson setData(RedPersonDTO redPersonDTO){
+        RedPerson redperson = RedPersonSingleton.getInstance();
+        redperson.setId(redPersonDTO.getId());
+        redperson.setPassword(redPersonDTO.getPassword());
+        redperson.setUsername(redPersonDTO.getUsername());
+        return redperson;
     }
 }
