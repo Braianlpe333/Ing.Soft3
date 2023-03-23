@@ -1,6 +1,6 @@
 package com.uco.apiaolveit.util.exception;
 
-import com.uco.apiaolveit.util.UtilObject;
+
 
 public class GeneralException extends RuntimeException{
 
