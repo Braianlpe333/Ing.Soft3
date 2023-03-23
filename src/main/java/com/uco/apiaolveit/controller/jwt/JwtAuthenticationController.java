@@ -20,6 +20,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
+import java.util.logging.Logger;
 
 @RestController
 @CrossOrigin
@@ -49,6 +50,7 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
+        System.out.println(token);
 
         return ResponseEntity.ok(new JwtResponse(token));
     }
