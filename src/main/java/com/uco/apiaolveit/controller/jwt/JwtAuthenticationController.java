@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
@@ -55,6 +56,10 @@ public class JwtAuthenticationController {
     @PostMapping("/register")
     public Mono<RedPerson> saveUser(@RequestBody RedPersonDTO userDTO)  {
         return userDetailsService.save(RedPerson.setData(userDTO));
+    }
+    @GetMapping("/get")
+    public Flux<RedPerson> getAll(){
+        return userDetailsService.getAll();
     }
 
     private void authenticate(String username, String password) throws GeneralException {

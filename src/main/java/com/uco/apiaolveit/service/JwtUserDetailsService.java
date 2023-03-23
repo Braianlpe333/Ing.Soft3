@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
@@ -33,6 +34,9 @@ public class JwtUserDetailsService implements UserDetailsService {
     public Mono<RedPerson> save(RedPerson redUser) {
         redUser.setPassword(bcryptEncoder.encode(redUser.getPassword()));
         return iredUserRepository.save(redUser);
+    }
+    public Flux<RedPerson> getAll(){
+        return iredUserRepository.findAll();
     }
 }
 
