@@ -3,7 +3,7 @@ package com.uco.apisolveit.controller.publication;
 
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
-import com.uco.apisolveit.service.person.publication.PublicationService;
+import com.uco.apisolveit.service.publication.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

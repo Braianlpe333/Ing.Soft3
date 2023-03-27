@@ -1,7 +1,9 @@
 package com.uco.apisolveit.service.person;
 
 import com.uco.apisolveit.domain.person.Person;
+import com.uco.apisolveit.util.UtilObject;
 import com.uco.apisolveit.util.UtilString;
+import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -20,7 +22,6 @@ public class PersonService {
     private IPersonRepository personRepository;
 
     public Flux<Person> get(){
-
         return personRepository.findAll();
     }
 
@@ -32,13 +33,15 @@ public class PersonService {
         return personRepository.findByEmail(email);
     }
     public Mono<Person> save(Person person){
+        existUserWithSameEmail(person.getEmail());
         validationData(person);
         return personRepository.save(person);
     }
 
     public Mono<Person>  put(String email,Person person){
+        personExist(person);
+        emailExist(email);
         validationData(person);
-
         return personRepository.findByEmail(email).flatMap(existingPerson -> {
 
             existingPerson.setName(person.getName().isEmpty() ? existingPerson.getName() : person.getName());
@@ -52,7 +55,8 @@ public class PersonService {
         });
     }
     public Mono<Person>  patch(String email,Person person){
-
+        personExist(person);
+        emailExist(email);
         return personRepository.findByEmail(email).flatMap(existingPerson -> {
 
             existingPerson.setName(isEmptyOrNull( person.getName()) ? existingPerson.getName() : person.getName());
@@ -67,6 +71,7 @@ public class PersonService {
     }
 
     public Mono<Void> delete(String mail){
+        emailExist(mail);
         return personRepository.findById(mail).flatMap(existingPerson -> personRepository.deleteById(mail));
     }
 
@@ -82,10 +87,23 @@ public class PersonService {
 
         UtilString.requiresPattern(person.getEmail(), Constant.TXT_PATTER_EMAIL,String.format(Constant.TXT_BAD_EMAIL));
 
-
         UtilString.requieresLength(person.getPassword(),10,10,String.format(Constant.TXT_NO_LENGTH_REQUIERED, person.getPassword()));
         UtilString.requieresLength(person.getPhone(), 10, 10,String.format(Constant.TXT_NO_LENGTH_REQUIERED, person.getPhone()));
 
     }
-
+    private void personExist(Person person){
+        if(UtilObject.getUtilObject().isNull(personRepository.findByEmail(person.getEmail()))){
+            throw GeneralException.build("No user found");
+        }
+    }
+    private void emailExist(String email){
+        if(UtilObject.getUtilObject().isNull(personRepository.findByEmail(email))){
+            throw GeneralException.build("There is no user with this email");
+        }
+    }
+    private void existUserWithSameEmail(String email){
+        if(!UtilObject.getUtilObject().isNull(personRepository.findByEmail(email))){
+            throw GeneralException.build("there is already a registered user with this email");
+        }
+    }
 }

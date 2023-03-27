@@ -1,9 +1,10 @@
-package com.uco.apisolveit.service.person.publication;
+package com.uco.apisolveit.service.publication;
 
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.util.Constant;
 import com.uco.apisolveit.util.UtilObject;
 import com.uco.apisolveit.util.UtilString;
+import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -56,6 +57,7 @@ public class PublicationService {
     }
 
     public Mono<Publication>  patch(String publicationId, Publication publication){
+        publicationExist(publicationId);
         validationData(publication);
         return publicationRepository.findById(publicationId).flatMap(existingPublication -> {
 
@@ -69,6 +71,7 @@ public class PublicationService {
     }
 
     public Mono<Void> delete(String publicationId){
+        publicationExist(publicationId);
         return publicationRepository.findById(publicationId).flatMap(existingPerson -> publicationRepository.deleteById(publicationId));
     }
 
@@ -80,5 +83,10 @@ public class PublicationService {
 
         UtilString.requieresLength(publication.getPhone(), 10, 10,String.format(Constant.TXT_NO_LENGTH_REQUIERED, publication.getPhone()));
 
+    }
+    private void publicationExist(String publicationId){
+        if(UtilObject.getUtilObject().isNull(publicationRepository.findById(publicationId))){
+            throw GeneralException.build("The publication does not exist");
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.uco.apisolveit.domain.publicationtype;
 
+
+import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,15 +10,33 @@ public class PublicationType {
 
     @Id
     private String id;
-    private String description;
+    private PublicationTypeEnum description;
 
     public String getId(){return id;}
 
     public void setId(String id){this.id = id;}
 
-    public String getDescription(){return description;}
+    public String getDescription(){return description.toString();}
 
-    public void setDescription(String description){this.description = description;}
+    public void setDescription(String id){
+        switch (id){
+            case("0"):{
+                this.description = PublicationTypeEnum.GARDENING;
+                break;
+            }
+            case ("1"):{
+                this.description = PublicationTypeEnum.ASSISTANCE;
+                break;
+            }
+            case ("2"):{
+                this.description = PublicationTypeEnum.TECHNOLOGY;
+                break;
+            }
+            default:{
+                throw GeneralException.build("The category is not valid");
+            }
+        }
+    }
 
     @Override
     public String toString(){
@@ -26,3 +46,5 @@ public class PublicationType {
                 '}';
     }
 }
+
+
