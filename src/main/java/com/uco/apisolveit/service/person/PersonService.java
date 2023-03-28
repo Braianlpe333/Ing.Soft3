@@ -3,7 +3,6 @@ package com.uco.apisolveit.service.person;
 import com.uco.apisolveit.domain.person.Person;
 import com.uco.apisolveit.util.UtilObject;
 import com.uco.apisolveit.util.UtilString;
-import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -11,6 +10,7 @@ import reactor.core.publisher.Mono;
 import com.uco.apisolveit.repository.person.IPersonRepository;
 import com.uco.apisolveit.util.Constant;
 
+import javax.validation.ValidationException;
 import java.util.Objects;
 
 import static com.uco.apisolveit.util.UtilString.isEmptyOrNull;
@@ -27,9 +27,9 @@ public class PersonService {
 
     public Mono<Person> get(String email){
          if(!Objects.isNull(email)){
+             UtilString.requieresNoNullOrNoEmpty(email,String.format(Constant.TXT_EXPECT_VALUE, email));
              UtilString.requiresPattern(email, Constant.TXT_PATTER_EMAIL,String.format(Constant.TXT_BAD_EMAIL));
          }
-
         return personRepository.findByEmail(email);
     }
     public Mono<Person> save(Person person){
@@ -70,9 +70,13 @@ public class PersonService {
         });
     }
 
-    public Mono<Void> delete(String mail){
-        emailExist(mail);
-        return personRepository.findById(mail).flatMap(existingPerson -> personRepository.deleteById(mail));
+    public String delete(String email){
+        if(!isEmptyOrNull(email)){
+            UtilString.requieresNoNullOrNoEmpty(email,String.format(Constant.TXT_EXPECT_VALUE, email));
+            UtilString.requiresPattern(email, Constant.TXT_PATTER_EMAIL,String.format(Constant.TXT_BAD_EMAIL));
+        }
+        personRepository.findByEmail(email).flatMap(existingPerson -> personRepository.deleteById(existingPerson.getId()));
+        return "Person deleted successfully ";
     }
 
 
@@ -93,17 +97,17 @@ public class PersonService {
     }
     private void personExist(Person person){
         if(UtilObject.getUtilObject().isNull(personRepository.findByEmail(person.getEmail()))){
-            throw GeneralException.build("No user found");
+            throw new ValidationException("No user found");
         }
     }
     private void emailExist(String email){
         if(UtilObject.getUtilObject().isNull(personRepository.findByEmail(email))){
-            throw GeneralException.build("There is no user with this email");
+            throw new ValidationException("There is no user with this email");
         }
     }
     private void existUserWithSameEmail(String email){
         if(!UtilObject.getUtilObject().isNull(personRepository.findByEmail(email))){
-            throw GeneralException.build("there is already a registered user with this email");
+            throw new ValidationException("there is already a registered user with this email");
         }
     }
 }
