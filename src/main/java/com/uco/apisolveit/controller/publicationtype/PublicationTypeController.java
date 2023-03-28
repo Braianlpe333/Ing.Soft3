@@ -1,10 +1,13 @@
-package com.uco.apisolveit.controller.type;
+package com.uco.apisolveit.controller.publicationtype;
+
 import com.uco.apisolveit.domain.publicationtype.PublicationType;
-import com.uco.apisolveit.service.type.PublicationTypeService;
+import com.uco.apisolveit.service.publicationtype.PublicationTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+
 
 @RestController
 @RequestMapping("/api/v1/rest")
@@ -16,9 +19,8 @@ public class PublicationTypeController {
     public Flux<PublicationType> get(){
         return typeService.get();
     }
-    @GetMapping("/publicationType/{id}")
-    public Mono<PublicationType> get(String publicationTypeId){
-        return typeService.get(publicationTypeId);
-    }
+
+    @GetMapping("/publicationType/{description}")
+    public Mono<PublicationType> get(@PathVariable("description") String description){return typeService.get(description);}
 
 }

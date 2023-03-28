@@ -1,6 +1,9 @@
 package com.uco.apisolveit.domain.publicationtype;
 
 
+import com.uco.apisolveit.dto.publicationtype.PublicationTypeDTO;
+import com.uco.apisolveit.singleton.publication.PublicationSingleton;
+import com.uco.apisolveit.singleton.publicationtype.PublicationTypeSingleton;
 import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -45,6 +48,13 @@ public class PublicationType {
                 ", description='"+ description + '\''+
                 '}';
     }
+
+    /*public static PublicationType setData(PublicationTypeDTO publicationTypeDTO) {
+        PublicationType publicationType = PublicationTypeSingleton.getInstance();
+        publicationType.setId(publicationTypeDTO.getId());
+        publicationType.setId(publicationTypeDTO.getDescription());
+        return publicationType;
+    }*/
 }
 
 
