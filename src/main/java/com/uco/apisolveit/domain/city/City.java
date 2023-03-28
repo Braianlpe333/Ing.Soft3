@@ -9,9 +9,9 @@ public class City {
     private String id;
     private String description;
 
-    public City(String id, String description) {
-        this.id = id;
-        this.description = description;
+    public City() {
+        this.id = " ";
+        this.description = " ";
     }
 
     public String getId(){return id;}
