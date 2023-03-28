@@ -20,28 +20,25 @@ public class PublicationService {
     @Autowired
     private IPublicationRepository publicationRepository;
 
-    public Flux<Publication> get() {
+    public Flux<Publication> getAll() {
         return publicationRepository.findAll();
     }
-    public Flux<Publication> get(String title) {
-        if(!Objects.isNull(title)){
-            UtilString.requieresNoNullOrNoEmpty(title,String.format(Constant.TXT_EXPECT_VALUE));
-        }
+    public Flux<Publication> getByTitle(String title) {
         return publicationRepository.findByTitle(title);
     }
-    public Flux<Publication> get(PublicationType type) {
+    public Flux<Publication> getByType(PublicationType type) {
         if(!Objects.isNull(type.getDescription())){
             UtilString.requieresNoNullOrNoEmpty(type.getDescription(),String.format(Constant.TXT_EXPECT_VALUE));
         }
         return publicationRepository.findByType(type);
     }
-    public Flux<Publication> get(Date date) {
+    public Flux<Publication> getByDate(Date date) {
         if(!Objects.isNull(date)){
             UtilString.requieresNoNullOrNoEmpty(date.toString(),String.format(Constant.TXT_EXPECT_VALUE));
         }
         return publicationRepository.findByDate(date);
     }
-    public Flux<Publication> get(String title, String category, Date date) {
+    public Flux<Publication> getBySome(String title, String category, Date date) {
         if(!Objects.isNull(title) && !Objects.isNull(category) &&!Objects.isNull(date)){
             UtilString.requieresNoNullOrNoEmpty(title,String.format(Constant.TXT_EXPECT_VALUE));
             UtilString.requieresNoNullOrNoEmpty(category,String.format(Constant.TXT_EXPECT_VALUE));
@@ -56,7 +53,7 @@ public class PublicationService {
         return publicationRepository.save(publication);
     }
 
-    public Mono<Publication>  patch(String publicationId, Publication publication){
+    public Mono<Publication>  put(String publicationId, Publication publication){
         publicationExist(publicationId);
         validationData(publication);
         return publicationRepository.findById(publicationId).flatMap(existingPublication -> {

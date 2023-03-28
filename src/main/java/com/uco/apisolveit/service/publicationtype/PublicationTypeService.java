@@ -24,9 +24,7 @@ public class PublicationTypeService {
     }
 
     public Mono<PublicationType> get(String publicationTypeId) {
-        if(!Objects.isNull(publicationTypeId)){
-            UtilString.requieresNoNullOrNoEmpty(publicationTypeId,String.format(Constant.TXT_EXPECT_VALUE, publicationTypeId));
-        }
+
         return publicationTypeRepository.findByCategory(publicationTypeId);
     }
 

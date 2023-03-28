@@ -55,6 +55,7 @@ public class PublicationDTO {
     }
 
     public void setCategory(PublicationType category) {
-        this.category = category;
+        this.category.setDescription(category.getDescription());
+        this.category.setId(category.getId());
     }
 }

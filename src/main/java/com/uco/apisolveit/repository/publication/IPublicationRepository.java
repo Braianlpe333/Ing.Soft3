@@ -10,7 +10,7 @@ public interface IPublicationRepository extends ReactiveCrudRepository<Publicati
 {
 
 
-    @Query("{ title: ?0}")
+    @Query("{ 'publicationTitle': ?0}")
     Flux<Publication> findByTitle( String title);
 
     @Query("{'type': ?0}")
