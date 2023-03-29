@@ -13,7 +13,7 @@ public class PublicationType {
 
     @Id
     private String id;
-    private PublicationTypeEnum description;
+    private String description;
 
     public String getId(){return id;}
 
@@ -23,16 +23,16 @@ public class PublicationType {
 
     public void setDescription(String id){
         switch (id){
-            case("0"):{
-                this.description = PublicationTypeEnum.GARDENING;
+            case("6423292d6009b28ddb30b941"):{
+                this.description = PublicationTypeEnum.GARDENING.toString();
                 break;
             }
-            case ("1"):{
-                this.description = PublicationTypeEnum.ASSISTANCE;
+            case ("64232b986009b28ddb30b944"):{
+                this.description = PublicationTypeEnum.ASSISTANCE.toString();
                 break;
             }
-            case ("2"):{
-                this.description = PublicationTypeEnum.TECHNOLOGY;
+            case ("64232b836009b28ddb30b943"):{
+                this.description = PublicationTypeEnum.TECHNOLOGY.toString();
                 break;
             }
             default:{

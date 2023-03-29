@@ -2,6 +2,7 @@ package com.uco.apisolveit.controller.publication;
 
 
 import com.uco.apisolveit.controller.Response;
+import com.uco.apisolveit.domain.person.Person;
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
 import com.uco.apisolveit.service.publication.PublicationService;
@@ -84,7 +85,7 @@ public class PublicationController {
                 statusCode = HttpStatus.OK;
             }else{
                 messages.add("No publications found with this type");
-                statusCode = HttpStatus.OK;
+                statusCode = HttpStatus.NOT_FOUND;
             }
 
         }catch (Exception exception){

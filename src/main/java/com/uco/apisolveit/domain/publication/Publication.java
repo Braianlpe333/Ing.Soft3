@@ -7,6 +7,8 @@ import com.uco.apisolveit.singleton.publication.PublicationSingleton;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.security.SignatureSpi;
+
 @Document(collection = "publication_data")
 public class Publication {
 
@@ -60,7 +62,6 @@ public class Publication {
     }
     public static Publication setData(PublicationDTO publicationDTO){
         PublicationTypeService publicationTypeService = new PublicationTypeService();
-
         Publication publication = PublicationSingleton.getInstance();
         publication.setId(publicationDTO.getId());
         publication.setPublicationTitle(publicationDTO.getPublicationTitle());
@@ -69,5 +70,4 @@ public class Publication {
         publication.setDescription(publicationDTO.getDescription());
         return publication;
     }
-
 }

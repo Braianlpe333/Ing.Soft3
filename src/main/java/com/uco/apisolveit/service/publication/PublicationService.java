@@ -27,9 +27,6 @@ public class PublicationService {
         return publicationRepository.findByTitle(title);
     }
     public Flux<Publication> getByType(PublicationType type) {
-        if(!Objects.isNull(type.getDescription())){
-            UtilString.requieresNoNullOrNoEmpty(type.getDescription(),String.format(Constant.TXT_EXPECT_VALUE));
-        }
         return publicationRepository.findByType(type);
     }
     public Flux<Publication> getByDate(Date date) {

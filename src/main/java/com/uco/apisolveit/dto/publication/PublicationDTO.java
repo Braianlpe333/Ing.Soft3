@@ -2,6 +2,8 @@ package com.uco.apisolveit.dto.publication;
 
 import com.uco.apisolveit.domain.publicationtype.PublicationType;
 
+
+
 public class PublicationDTO {
     private String id;
     private String publicationTitle;
@@ -55,7 +57,6 @@ public class PublicationDTO {
     }
 
     public void setCategory(PublicationType category) {
-        this.category.setDescription(category.getDescription());
-        this.category.setId(category.getId());
+        this.category = category;
     }
 }
