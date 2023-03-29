@@ -61,6 +61,7 @@ public class Publication {
     }
     public static Publication setData(PublicationDTO publicationDTO){
         Publication publication = PublicationSingleton.getInstance();
+
         publication.setId(publicationDTO.getId());
         publication.setPublicationTitle(publicationDTO.getPublicationTitle());
         publication.setPhone(publicationDTO.getPhone());
@@ -69,3 +70,5 @@ public class Publication {
         return publication;
     }
 }
+
+

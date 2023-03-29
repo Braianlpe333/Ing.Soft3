@@ -51,7 +51,6 @@ public class PublicationService {
     }
 
     public Mono<Publication>  put(String publicationId, Publication publication){
-        publicationExist(publicationId);
         validationData(publication);
         return publicationRepository.findById(publicationId).flatMap(existingPublication -> {
 
@@ -65,7 +64,6 @@ public class PublicationService {
     }
 
     public Mono<Void> delete(String publicationId){
-        publicationExist(publicationId);
         return publicationRepository.findById(publicationId).flatMap(existingPerson -> publicationRepository.deleteById(publicationId));
     }
 
@@ -78,9 +76,5 @@ public class PublicationService {
         UtilString.requieresLength(publication.getPhone(), 10, 10,String.format(Constant.TXT_NO_LENGTH_REQUIERED, publication.getPhone()));
 
     }
-    private void publicationExist(String publicationId){
-        if(UtilObject.getUtilObject().isNull(publicationRepository.findById(publicationId))){
-            throw GeneralException.build("The publication does not exist");
-        }
-    }
+
 }

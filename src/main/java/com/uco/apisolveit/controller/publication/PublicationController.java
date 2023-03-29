@@ -2,6 +2,7 @@ package com.uco.apisolveit.controller.publication;
 
 
 import com.uco.apisolveit.controller.Response;
+import com.uco.apisolveit.domain.person.Person;
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
 import com.uco.apisolveit.service.publication.PublicationService;
@@ -140,21 +141,13 @@ public class PublicationController {
 
     @PostMapping("/publication")
     public ResponseEntity<Response<Publication>> postPublication(@RequestBody PublicationDTO publicationDTO){
-        ResponseEntity<Response<Publication>> responseEntity;
         List<String> messages = new ArrayList<>();
         Response<Publication> response = new Response<>();
-        HttpStatus statusCode = HttpStatus.BAD_REQUEST;
-        try{
-            publicationService.save(Publication.setData(publicationDTO));
-            messages.add("Publication created successfully");
-            statusCode = HttpStatus.OK;
-        }catch (Exception exception){
-            messages.add(exception.getMessage());
-        }
+        messages.add("Create");
         response.setMessage(messages);
-        response.setStatus(statusCode);
-        responseEntity = new ResponseEntity<>(response,statusCode);
-        return responseEntity;
+        response.setStatus(HttpStatus.CREATED);
+        return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
+                new  ResponseEntity<Response<Publication>>(response,HttpStatus.CREATED)).block();
     }
 
     @PutMapping("/publication")
@@ -178,23 +171,8 @@ public class PublicationController {
     }
 
 
-    @DeleteMapping("/publication")
-    public  ResponseEntity<Response<Publication>> deletePublication(@RequestParam String publicationId){
-        ResponseEntity<Response<Publication>> responseEntity;
-        List<String> messages = new ArrayList<>();
-        Response<Publication> response = new Response<>();
-        HttpStatus statusCode = HttpStatus.BAD_REQUEST;
-        try{
-            publicationService.delete(publicationId);
-            messages.add("Publication deleted successfully");
-            statusCode = HttpStatus.OK;
-        }
-        catch (Exception exception){
-            messages.add(exception.getMessage());
-        }
-        response.setMessage(messages);
-        response.setStatus(statusCode);
-        responseEntity = new ResponseEntity<>(response,statusCode);
-        return responseEntity;
+    @DeleteMapping("/publication/{publicationId}")
+    public Mono<ResponseEntity<Void>>  deletePublication(@PathVariable("publicationId") String publicationId){
+        return publicationService.delete(publicationId).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
     }
 }

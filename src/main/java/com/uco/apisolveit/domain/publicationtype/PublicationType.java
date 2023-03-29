@@ -1,6 +1,7 @@
 package com.uco.apisolveit.domain.publicationtype;
 
 import com.uco.apisolveit.singleton.publicationtype.PublicationTypeSingleton;
+import com.uco.apisolveit.util.UtilObject;
 import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -47,10 +48,8 @@ public class PublicationType {
             }
 
         }
-
-        return type;
+    return type;
     }
-
 }
 
 
