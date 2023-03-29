@@ -2,7 +2,6 @@ package com.uco.apisolveit.domain.publication;
 
 import com.uco.apisolveit.domain.publicationtype.PublicationType;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
-import com.uco.apisolveit.service.publicationtype.PublicationTypeService;
 import com.uco.apisolveit.singleton.publication.PublicationSingleton;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -61,11 +60,10 @@ public class Publication {
     }
     public static Publication setData(PublicationDTO publicationDTO){
         Publication publication = PublicationSingleton.getInstance();
-
         publication.setId(publicationDTO.getId());
         publication.setPublicationTitle(publicationDTO.getPublicationTitle());
         publication.setPhone(publicationDTO.getPhone());
-        publication.setCategory(new PublicationType().setData(publicationDTO.getCategory()));
+        publication.setCategory(PublicationType.setData(publicationDTO.getCategory()));
         publication.setDescription(publicationDTO.getDescription());
         return publication;
     }

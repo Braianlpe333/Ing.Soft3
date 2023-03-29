@@ -1,8 +1,6 @@
 package com.uco.apisolveit.domain.publicationtype;
 
 import com.uco.apisolveit.singleton.publicationtype.PublicationTypeSingleton;
-import com.uco.apisolveit.util.UtilObject;
-import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -37,16 +35,23 @@ public class PublicationType {
             case ("GARDENING"):{
                 type.setId("6423292d6009b28ddb30b941");
                 type.setDescription(description);
+                break;
             }
             case("TECHNOLOGY"):{
                 type.setId("64232b836009b28ddb30b943");
                 type.setDescription(description);
+                break;
             }
             case("ASSISTANCE"):{
                 type.setId("64232b986009b28ddb30b944");
                 type.setDescription(description);
+                break;
             }
-
+            default: {
+                type.setId(null);
+                type.setDescription(null);
+                break;
+            }
         }
     return type;
     }

@@ -2,7 +2,6 @@ package com.uco.apisolveit.controller.publication;
 
 
 import com.uco.apisolveit.controller.Response;
-import com.uco.apisolveit.domain.person.Person;
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
 import com.uco.apisolveit.service.publication.PublicationService;
@@ -143,7 +142,7 @@ public class PublicationController {
     public ResponseEntity<String> postPublication(@RequestBody PublicationDTO publicationDTO){
         return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
                 new  ResponseEntity<String>("savePublication",HttpStatus.CREATED))
-                .defaultIfEmpty(new  ResponseEntity<String>("Publication not found",HttpStatus.NOT_FOUND)).block();
+                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();
     }
 
     @PutMapping("/publication/{id}")
@@ -172,6 +171,6 @@ public class PublicationController {
     @DeleteMapping("/publication/{publicationId}")
     public Mono<ResponseEntity<String>>  deletePublication(@PathVariable("publicationId") String publicationId){
         return publicationService.delete(publicationId).then(Mono.just(new ResponseEntity<String>("Publication delete Successfully",HttpStatus.OK)))
-                .defaultIfEmpty(new ResponseEntity<String>("Publication not found",HttpStatus.NOT_FOUND));
+                .defaultIfEmpty(new ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND));
     }
 }

@@ -2,7 +2,6 @@ package com.uco.apisolveit.controller.person;
 
 import com.uco.apisolveit.controller.Response;
 import com.uco.apisolveit.domain.person.Person;
-import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.person.PersonDTO;
 import com.uco.apisolveit.service.person.PersonService;
 import com.uco.apisolveit.util.UtilObject;
@@ -78,7 +77,7 @@ public class PersonController {
     public Mono<ResponseEntity<String>>  postPerson(@Valid @RequestBody PersonDTO personDTO){
         return personService.save(Person.setData(personDTO)).map(savePublication ->
                         new  ResponseEntity<String>("User register Successfully",HttpStatus.CREATED))
-                .defaultIfEmpty(new  ResponseEntity<String>("There was an error creating user",HttpStatus.BAD_REQUEST));
+                .defaultIfEmpty(new  ResponseEntity<>("There was an error creating user",HttpStatus.BAD_REQUEST));
     }
 
     @PutMapping("/user/{email}")
@@ -128,6 +127,6 @@ public class PersonController {
     @DeleteMapping("/user/{email}")
     public Mono<ResponseEntity<Void>> deletePerson(@PathVariable("email") String email){
         return personService.delete(email).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
-                .defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
+                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

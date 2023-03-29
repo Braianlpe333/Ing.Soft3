@@ -4,7 +4,6 @@ import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.util.Constant;
 import com.uco.apisolveit.util.UtilObject;
 import com.uco.apisolveit.util.UtilString;
-import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

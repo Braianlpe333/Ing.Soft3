@@ -1,7 +1,6 @@
 package com.uco.apisolveit.service.person;
 
 import com.uco.apisolveit.domain.person.Person;
-import com.uco.apisolveit.util.UtilObject;
 import com.uco.apisolveit.util.UtilString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import reactor.core.publisher.Mono;
 import com.uco.apisolveit.repository.person.IPersonRepository;
 import com.uco.apisolveit.util.Constant;
 
-import javax.validation.ValidationException;
 import java.util.Objects;
 
 import static com.uco.apisolveit.util.UtilString.isEmptyOrNull;
