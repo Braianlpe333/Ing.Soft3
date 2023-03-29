@@ -1,7 +1,5 @@
 package com.uco.apisolveit.dto.publication;
 
-import com.uco.apisolveit.domain.publicationtype.PublicationType;
-
 
 
 public class PublicationDTO {
@@ -9,13 +7,13 @@ public class PublicationDTO {
     private String publicationTitle;
     private String description;
     private String phone;
-    private PublicationType category;
+    private String categoryDescription;
 
 
-    public PublicationDTO(String id, String publicationTitle, String description, String phone, PublicationType category) {
+    public PublicationDTO(String id, String publicationTitle, String description, String phone, String categoryDescription) {
         setId(id);
         setPublicationTitle(publicationTitle);
-        setCategory(category);
+        setCategory(categoryDescription);
         setPhone(phone);
         setDescription(description);
     }
@@ -52,11 +50,11 @@ public class PublicationDTO {
         this.phone = phone;
     }
 
-    public PublicationType getCategory() {
-        return category;
+    public String getCategory() {
+        return categoryDescription;
     }
 
-    public void setCategory(PublicationType category) {
-        this.category = category;
+    public void setCategory(String category) {
+        this.categoryDescription = category;
     }
 }

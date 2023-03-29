@@ -1,8 +1,5 @@
 package com.uco.apisolveit.domain.publicationtype;
 
-
-import com.uco.apisolveit.dto.publicationtype.PublicationTypeDTO;
-import com.uco.apisolveit.singleton.publication.PublicationSingleton;
 import com.uco.apisolveit.singleton.publicationtype.PublicationTypeSingleton;
 import com.uco.apisolveit.util.exception.GeneralException;
 import org.springframework.data.annotation.Id;
@@ -19,26 +16,10 @@ public class PublicationType {
 
     public void setId(String id){this.id = id;}
 
-    public String getDescription(){return description.toString();}
+    public String getDescription(){return description;}
 
-    public void setDescription(String id){
-        switch (id){
-            case("6423292d6009b28ddb30b941"):{
-                this.description = PublicationTypeEnum.GARDENING.toString();
-                break;
-            }
-            case ("64232b986009b28ddb30b944"):{
-                this.description = PublicationTypeEnum.ASSISTANCE.toString();
-                break;
-            }
-            case ("64232b836009b28ddb30b943"):{
-                this.description = PublicationTypeEnum.TECHNOLOGY.toString();
-                break;
-            }
-            default:{
-                throw GeneralException.build("The category is not valid");
-            }
-        }
+    public void setDescription(String description){
+        this.description = description;
     }
 
     @Override
@@ -49,12 +30,27 @@ public class PublicationType {
                 '}';
     }
 
-    /*public static PublicationType setData(PublicationTypeDTO publicationTypeDTO) {
-        PublicationType publicationType = PublicationTypeSingleton.getInstance();
-        publicationType.setId(publicationTypeDTO.getId());
-        publicationType.setId(publicationTypeDTO.getDescription());
-        return publicationType;
-    }*/
+    public static PublicationType setData( String description){
+        PublicationType type = PublicationTypeSingleton.getInstance();
+        switch (description){
+            case ("GARDENING"):{
+                type.setId("6423292d6009b28ddb30b941");
+                type.setDescription(description);
+            }
+            case("TECHNOLOGY"):{
+                type.setId("64232b836009b28ddb30b943");
+                type.setDescription(description);
+            }
+            case("ASSISTANCE"):{
+                type.setId("64232b986009b28ddb30b944");
+                type.setDescription(description);
+            }
+
+        }
+
+        return type;
+    }
+
 }
 
 

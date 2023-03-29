@@ -2,15 +2,16 @@ package com.uco.apisolveit.controller.publication;
 
 
 import com.uco.apisolveit.controller.Response;
-import com.uco.apisolveit.domain.person.Person;
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
 import com.uco.apisolveit.service.publication.PublicationService;
 import com.uco.apisolveit.service.publicationtype.PublicationTypeService;
+import com.uco.apisolveit.util.UtilObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,13 +48,11 @@ public class PublicationController {
     public ResponseEntity<Response<Publication>> getPublicationByTitle(@PathVariable("title") String title){
         ResponseEntity<Response<Publication>> responseEntity;
         List<String> messages = new ArrayList<>();
-        List<Publication> publicationList = new ArrayList<>();
         Response<Publication> response = new Response<>();
         HttpStatus statusCode = HttpStatus.BAD_REQUEST;
         try{
-            publicationList = publicationService.getByTitle(title).collectList().block();
-            if(!publicationList.isEmpty()){
-                response.setData(publicationList);
+            if(!UtilObject.getUtilObject().getDefault( publicationService.getByTitle(title).collectList().block(),new ArrayList<Publication>()).isEmpty()){
+                response.setData(publicationService.getByTitle(title).collectList().block());
                 messages.add("Publications by title");
                 statusCode = HttpStatus.OK;
             }else{
@@ -74,13 +73,12 @@ public class PublicationController {
     public ResponseEntity<Response<Publication>> getPublicationByType(@PathVariable("type") String type){
         ResponseEntity<Response<Publication>> responseEntity;
         List<String> messages = new ArrayList<>();
-        List<Publication> publicationList = new ArrayList<>();
         Response<Publication> response = new Response<>();
         HttpStatus statusCode = HttpStatus.BAD_REQUEST;
         try{
-            publicationList = publicationService.getByType(publicationTypeService.get(type).block()).collectList().block();
-            if(!publicationList.isEmpty()){
-                response.setData(publicationList);
+
+            if(!UtilObject.getUtilObject().getDefault(publicationService.getByType(publicationTypeService.get(type).block()).collectList().block(), new ArrayList<Publication>()).isEmpty()){
+                response.setData(publicationService.getByType(publicationTypeService.get(type).block()).collectList().block());
                 messages.add("Publications by type");
                 statusCode = HttpStatus.OK;
             }else{
@@ -104,9 +102,15 @@ public class PublicationController {
         Response<Publication> response = new Response<>();
         HttpStatus statusCode = HttpStatus.BAD_REQUEST;
         try{
-            response.setData(publicationService.getByDate(date).collectList().block());
-            messages.add("Publications by date");
-            statusCode = HttpStatus.OK;
+            if(!UtilObject.getUtilObject().getDefault(publicationService.getByDate(date).collectList().block(),new ArrayList<Publication>()).isEmpty()){
+                response.setData(publicationService.getByDate(date).collectList().block());
+                messages.add("Publications by date");
+                statusCode = HttpStatus.OK;
+            }else{
+                messages.add("No publications found with this date");
+                statusCode = HttpStatus.NOT_FOUND;
+            }
+
         }catch (Exception exception){
             messages.add(exception.getMessage());
         }
