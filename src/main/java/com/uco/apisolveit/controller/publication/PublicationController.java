@@ -140,30 +140,28 @@ public class PublicationController {
     }
 
     @PostMapping("/publication")
-    public ResponseEntity<Response<Publication>> postPublication(@RequestBody PublicationDTO publicationDTO){
-        List<String> messages = new ArrayList<>();
-        Response<Publication> response = new Response<>();
-        messages.add("Create");
-        response.setMessage(messages);
-        response.setStatus(HttpStatus.CREATED);
+    public ResponseEntity<String> postPublication(@RequestBody PublicationDTO publicationDTO){
         return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
-                new  ResponseEntity<Response<Publication>>(response,HttpStatus.CREATED)).block();
+                new  ResponseEntity<String>("savePublication",HttpStatus.CREATED))
+                .defaultIfEmpty(new  ResponseEntity<String>("Publication not found",HttpStatus.NOT_FOUND)).block();
     }
 
-    @PutMapping("/publication")
-    public ResponseEntity<Response<Publication>> putPublication(@RequestBody String id,PublicationDTO publicationDTO){
+    @PutMapping("/publication/{id}")
+    public ResponseEntity<Response<Publication>> putPublication(@PathVariable("id") String id,@RequestBody PublicationDTO publicationDTO){
         ResponseEntity<Response<Publication>> responseEntity;
         List<String> messages = new ArrayList<>();
+        List<Publication> data = new ArrayList<>();
         Response<Publication> response = new Response<>();
         HttpStatus statusCode = HttpStatus.BAD_REQUEST;
         try{
-            publicationService.put(id,Publication.setData(publicationDTO));
+            data.add(publicationService.put(id,Publication.setData(publicationDTO)).block());
             messages.add("Publication actualized successfully");
             statusCode = HttpStatus.OK;
         }
         catch (Exception exception){
             messages.add(exception.getMessage());
         }
+        response.setData(data);
         response.setMessage(messages);
         response.setStatus(statusCode);
         responseEntity = new ResponseEntity<>(response,statusCode);
@@ -172,7 +170,8 @@ public class PublicationController {
 
 
     @DeleteMapping("/publication/{publicationId}")
-    public Mono<ResponseEntity<Void>>  deletePublication(@PathVariable("publicationId") String publicationId){
-        return publicationService.delete(publicationId).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
+    public Mono<ResponseEntity<String>>  deletePublication(@PathVariable("publicationId") String publicationId){
+        return publicationService.delete(publicationId).then(Mono.just(new ResponseEntity<String>("Publication delete Successfully",HttpStatus.OK)))
+                .defaultIfEmpty(new ResponseEntity<String>("Publication not found",HttpStatus.NOT_FOUND));
     }
 }

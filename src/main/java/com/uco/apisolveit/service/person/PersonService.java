@@ -33,14 +33,11 @@ public class PersonService {
         return personRepository.findByEmail(email);
     }
     public Mono<Person> save(Person person){
-        existUserWithSameEmail(person.getEmail());
         validationData(person);
         return personRepository.save(person);
     }
 
     public Mono<Person>  put(String email,Person person){
-        personExist(person);
-        emailExist(email);
         validationData(person);
         return personRepository.findByEmail(email).flatMap(existingPerson -> {
 
@@ -55,8 +52,7 @@ public class PersonService {
         });
     }
     public Mono<Person>  patch(String email,Person person){
-        personExist(person);
-        emailExist(email);
+
         return personRepository.findByEmail(email).flatMap(existingPerson -> {
 
             existingPerson.setName(isEmptyOrNull( person.getName()) ? existingPerson.getName() : person.getName());
@@ -70,13 +66,11 @@ public class PersonService {
         });
     }
 
-    public String delete(String email){
+    public Mono<Void> delete(String email){
         if(!isEmptyOrNull(email)){
-            UtilString.requieresNoNullOrNoEmpty(email,String.format(Constant.TXT_EXPECT_VALUE, email));
             UtilString.requiresPattern(email, Constant.TXT_PATTER_EMAIL,String.format(Constant.TXT_BAD_EMAIL));
         }
-        personRepository.findByEmail(email).flatMap(existingPerson -> personRepository.deleteById(existingPerson.getId()));
-        return "Person deleted successfully ";
+        return personRepository.findByEmail(email).flatMap(existingPerson -> personRepository.deleteById(existingPerson.getId()));
     }
 
 
@@ -95,19 +89,5 @@ public class PersonService {
         UtilString.requieresLength(person.getPhone(), 10, 10,String.format(Constant.TXT_NO_LENGTH_REQUIERED, person.getPhone()));
 
     }
-    private void personExist(Person person){
-        if(UtilObject.getUtilObject().isNull(personRepository.findByEmail(person.getEmail()))){
-            throw new ValidationException("No user found");
-        }
-    }
-    private void emailExist(String email){
-        if(UtilObject.getUtilObject().isNull(personRepository.findByEmail(email))){
-            throw new ValidationException("There is no user with this email");
-        }
-    }
-    private void existUserWithSameEmail(String email){
-        if(!UtilObject.getUtilObject().isNull(personRepository.findByEmail(email))){
-            throw new ValidationException("there is already a registered user with this email");
-        }
-    }
+
 }

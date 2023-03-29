@@ -2,6 +2,7 @@ package com.uco.apisolveit.controller.person;
 
 import com.uco.apisolveit.controller.Response;
 import com.uco.apisolveit.domain.person.Person;
+import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.person.PersonDTO;
 import com.uco.apisolveit.service.person.PersonService;
 import com.uco.apisolveit.util.UtilObject;
@@ -74,48 +75,59 @@ public class PersonController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<Response<Person>> postPerson(@Valid @RequestBody PersonDTO personDTO){
+    public Mono<ResponseEntity<String>>  postPerson(@Valid @RequestBody PersonDTO personDTO){
+        return personService.save(Person.setData(personDTO)).map(savePublication ->
+                        new  ResponseEntity<String>("User register Successfully",HttpStatus.CREATED))
+                .defaultIfEmpty(new  ResponseEntity<String>("There was an error creating user",HttpStatus.BAD_REQUEST));
+    }
+
+    @PutMapping("/user/{email}")
+    public ResponseEntity<Response<Person>> putPerson(@PathVariable("email") String email, @Valid @RequestBody PersonDTO personDTO){
         ResponseEntity<Response<Person>> responseEntity;
         List<String> messages = new ArrayList<>();
+        List<Person> data = new ArrayList<>();
         Response<Person> response = new Response<>();
         HttpStatus statusCode = HttpStatus.BAD_REQUEST;
         try{
-            personService.save(Person.setData(personDTO));
-            messages.add("User registered successfully");
+            data.add(personService.put(email,Person.setData(personDTO)).block());
+            messages.add("Person actualized successfully");
             statusCode = HttpStatus.OK;
-        }catch (Exception exception){
+        }
+        catch (Exception exception){
             messages.add(exception.getMessage());
         }
-        response.setMessage(messages);
-        responseEntity = new ResponseEntity<>(response,statusCode);
-        return responseEntity;
-    }
-
-    @PutMapping("/user")
-    public Mono<ResponseEntity<Person>> putPerson( @RequestParam String email,@Valid @RequestBody PersonDTO personDTO){
-        return personService.put(email,Person.setData(personDTO)).map(updatePerson -> new ResponseEntity<>(updatePerson, HttpStatus.OK)).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-    @PatchMapping("/user")
-    public Mono<ResponseEntity<Person>> patchPerson( @RequestParam String email,@Valid @RequestBody PersonDTO personDTO){
-        return personService.patch(email,Person.setData(personDTO)).map(updatePerson -> new ResponseEntity<>(updatePerson, HttpStatus.OK)).defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @DeleteMapping("/user/{email}")
-    public ResponseEntity<Response<Person>> deletePerson(@PathVariable("email") String email){
-        ResponseEntity<Response<Person>> responseEntity;
-        List<String> messages = new ArrayList<>();
-        Response<Person> response = new Response<>();
-        HttpStatus statusCode = HttpStatus.BAD_REQUEST;
-        try{
-            messages.add(personService.delete(email));
-            statusCode = HttpStatus.OK;
-
-        }catch (Exception exception){
-            messages.add(exception.getMessage());
-        }
+        response.setData(data);
         response.setMessage(messages);
         response.setStatus(statusCode);
         responseEntity = new ResponseEntity<>(response,statusCode);
         return responseEntity;
+    }
+    @PatchMapping("/user/{email}")
+    public ResponseEntity<Response<Person>> patchPerson( @PathVariable("email") String email,@Valid @RequestBody PersonDTO personDTO){
+        ResponseEntity<Response<Person>> responseEntity;
+        List<String> messages = new ArrayList<>();
+        List<Person> data = new ArrayList<>();
+        Response<Person> response = new Response<>();
+        HttpStatus statusCode = HttpStatus.BAD_REQUEST;
+        try{
+            data.add(personService.patch(email,Person.setData(personDTO)).block());
+            messages.add("Person actualized successfully");
+            statusCode = HttpStatus.OK;
+        }
+        catch (Exception exception){
+            messages.add(exception.getMessage());
+        }
+        response.setData(data);
+        response.setMessage(messages);
+        response.setStatus(statusCode);
+        responseEntity = new ResponseEntity<>(response,statusCode);
+        return responseEntity;
+
+    }
+
+    @DeleteMapping("/user/{email}")
+    public Mono<ResponseEntity<Void>> deletePerson(@PathVariable("email") String email){
+        return personService.delete(email).then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK)))
+                .defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
     }
 }
