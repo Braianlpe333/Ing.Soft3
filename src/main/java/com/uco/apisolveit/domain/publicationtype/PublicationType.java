@@ -33,17 +33,17 @@ public class PublicationType {
         PublicationType type = PublicationTypeSingleton.getInstance();
         switch (description){
             case ("GARDENING"):{
-                type.setId("6423292d6009b28ddb30b941");
+                //type.setId("6423292d6009b28ddb30b941");
                 type.setDescription(description);
                 break;
             }
             case("TECHNOLOGY"):{
-                type.setId("64232b836009b28ddb30b943");
+                //type.setId("64232b836009b28ddb30b943");
                 type.setDescription(description);
                 break;
             }
             case("ASSISTANCE"):{
-                type.setId("64232b986009b28ddb30b944");
+                //type.setId("64232b986009b28ddb30b944");
                 type.setDescription(description);
                 break;
             }

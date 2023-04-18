@@ -14,7 +14,7 @@ public interface IPublicationRepository extends ReactiveCrudRepository<Publicati
     Flux<Publication> findByTitle( String title);
 
     @Query("{'category': ?0}")
-    Flux<Publication> findByType( PublicationType type);
+    Flux<Publication> findByType(PublicationType type);
 
     @Query("{date: ?0}")
     Flux<Publication> findByDate(Date date);
