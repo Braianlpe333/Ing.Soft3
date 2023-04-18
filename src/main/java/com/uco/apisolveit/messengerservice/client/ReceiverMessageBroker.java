@@ -9,11 +9,11 @@ public class ReceiverMessageBroker {
     @Autowired
     private PersonService personService;
 
-    public void receiveMessageProcessPerson(String message){
+    public void receiveMessageProcessPerson() throws Exception {
         try{
 
         }catch(Exception e){
-            System.out.println(e);
+            throw new Exception(e);
         }
     }
 
