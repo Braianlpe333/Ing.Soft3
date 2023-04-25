@@ -4,6 +4,7 @@ package com.uco.apisolveit.controller.publication;
 import com.uco.apisolveit.controller.Response;
 import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.dto.publication.PublicationDTO;
+import com.uco.apisolveit.messengerservice.client.MessageSenderBroker;
 import com.uco.apisolveit.service.publication.PublicationService;
 import com.uco.apisolveit.service.publicationtype.PublicationTypeService;
 import com.uco.apisolveit.util.UtilObject;
@@ -25,6 +26,9 @@ public class PublicationController {
 
     @Autowired
     private PublicationTypeService publicationTypeService;
+
+    @Autowired
+    private MessageSenderBroker messageSenderBroker;
 
     @GetMapping("/publication")
     public ResponseEntity<Response<Publication>> getPublication(){
@@ -139,10 +143,11 @@ public class PublicationController {
     }
 
     @PostMapping("/publication")
-    public ResponseEntity<String> postPublication(@RequestBody PublicationDTO publicationDTO){
-        return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
+    public void postPublication(@RequestBody PublicationDTO publicationDTO){
+        /*return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
                 new  ResponseEntity<String>("savePublication",HttpStatus.CREATED))
-                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();
+                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();*/
+        messageSenderBroker.execute(Publication.setData(publicationDTO),"1");
     }
 
     @PutMapping("/publication/{id}")

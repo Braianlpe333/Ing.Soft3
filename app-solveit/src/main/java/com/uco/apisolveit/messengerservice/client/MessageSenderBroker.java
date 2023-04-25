@@ -2,6 +2,7 @@ package com.uco.apisolveit.messengerservice.client;
 
 import com.uco.apisolveit.config.ClientQueueConfig;
 import com.uco.apisolveit.domain.person.Person;
+import com.uco.apisolveit.domain.publication.Publication;
 import com.uco.apisolveit.service.person.MessageSender;
 import com.uco.apisolveit.util.gson.MapperJsonObject;
 import org.springframework.amqp.core.Message;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class MessageSenderBroker implements MessageSender<Person> {
+public class MessageSenderBroker implements MessageSender<Publication> {
 
     private final RabbitTemplate rabbitTemplate;
     private final MapperJsonObject mapperJsonObjeto;
@@ -27,7 +28,7 @@ public class MessageSenderBroker implements MessageSender<Person> {
     }
 
     @Override
-    public void execute(Person message, String idMessage) {
+    public void execute(Publication message, String idMessage) {
         MessageProperties propiedadesMensaje = generarPropiedadesMensaje(idMessage);
 
         Optional<Message> cuerpoMensaje = obtenerCuerpoMensaje(message, propiedadesMensaje);

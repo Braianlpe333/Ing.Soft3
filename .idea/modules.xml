@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Prubea.iml" filepath="$PROJECT_DIR$/.idea/Prubea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Software 3.iml" filepath="$PROJECT_DIR$/.idea/Software 3.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/apiaolveit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/apiaolveit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/publication.main.iml" filepath="$PROJECT_DIR$/.idea/modules/publication.main.iml" />
     </modules>
   </component>
 </project>
