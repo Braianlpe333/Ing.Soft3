@@ -7,20 +7,4 @@ import reactor.core.publisher.Flux;
 
 import java.util.Date;
 public interface IPublicationRepository extends ReactiveCrudRepository<Publication, String>
-{
-
-
-    @Query("{ 'publicationTitle': ?0}")
-    Flux<Publication> findByTitle( String title);
-
-    @Query("{'category': ?0}")
-    Flux<Publication> findByType(PublicationType type);
-
-    @Query("{date: ?0}")
-    Flux<Publication> findByDate(Date date);
-
-    @Query("{title: ?0, category: ?1, date: ?2}")
-    Flux<Publication> findByTitleTypeDate(String title, String type, Date date);
-
-
-}
+{}
