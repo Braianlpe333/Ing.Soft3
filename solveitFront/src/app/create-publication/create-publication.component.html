@@ -10,7 +10,7 @@
         </div>
         <div class="form-grup">
             <label for="description">Descripcion</label><br>
-            <input required type="text" name="description" ngModel>
+            <textarea required type="textarea" name="description" ngModel></textarea>
         </div>
         <div class="form-grup">
             <label for="contact">contact</label><br>
@@ -18,7 +18,10 @@
         </div>
         <div class="form-grup">
             <label for="type">Categoria</label><br>
-            <input type="text" name="type" ngModel>
+            <select  name="type" ngModel>
+                <option value="1">Opcion 1</option>
+                <option value="2">Opcion 2</option>
+            </select>
         </div>
         <button class="btn btn-primary" type="submit">Publicar</button>
     </form>
