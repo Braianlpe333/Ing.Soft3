@@ -13,14 +13,13 @@
             <textarea required type="textarea" name="description" ngModel></textarea>
         </div>
         <div class="form-grup">
-            <label for="contact">contact</label><br>
+            <label for="contact">Telefono</label><br>
             <input required type="tel" name="contact" ngModel>
         </div>
         <div class="form-grup">
             <label for="type">Categoria</label><br>
-            <select  name="type" ngModel>
-                <option value="1">Opcion 1</option>
-                <option value="2">Opcion 2</option>
+            <select  name="type" ngModel  *ngFor="let item of publicationType">
+                <option value={{item.id}}>{{item.data}}</option>
             </select>
         </div>
         <button class="btn btn-primary" type="submit">Publicar</button>
