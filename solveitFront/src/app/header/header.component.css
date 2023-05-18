@@ -1,12 +1,26 @@
+
 header{
-    background: white;
+    background: black;
     padding: 0;
     border-bottom: 1px solid #3374ff;
     position: sticky;
+    height: 100px;
+}
+.busqueda{
+    position: absolute; 
+    margin: 1em;
+    left: 33%;
+    width: 30%;
+    top: 25%;
+    height: 30%;
+    border: 3px solid white;
+    border-radius: 15px;
+
 }
 
+
 a{
-    color:#3374ff
+    color:white;
 }
 
 a:hover{
@@ -22,7 +36,8 @@ a:hover{
 
 a.logo{
     font-weight: bold;
-    padding: 1em;
+    padding: 2em;
+    padding-top: 20px;
 }
 
 nav ul{
@@ -33,4 +48,10 @@ nav ul{
 nav ul li a {
     padding: 1em;
     display: inline-block;
+}
+.szs{
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    
 }

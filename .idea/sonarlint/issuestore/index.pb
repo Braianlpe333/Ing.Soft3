@@ -31,3 +31,11 @@ Xapp-solveit/src/main/java/com/uco/apisolveit/service/publication/PublicationSer
 xpublication-microservice/src/main/java/com/uco/apisolveit/publication/repository/publication/IPublicationRepository.java,d\c\dcfb2ac68169f3f3cc8be62b1be29de9991441d4
 ¡
 qpublication-microservice/src/main/java/com/uco/apisolveit/publication/service/publication/PublicationService.java,b\a\ba32c34d07c1d5b5bd306be52e09d8d9fdb0435d
+€
+Papp-solveit/src/main/java/com/uco/apisolveit/dto/publication/PublicationDTO.java,9\8\987ecaf18da9e22dee457b9d4b270134134f0bcc
+€
+Papp-solveit/src/main/java/com/uco/apisolveit/domain/publication/Publication.java,e\2\e26ed7e97a45ce710683583c12d350559606e749
+ˆ
+Xapp-solveit/src/main/java/com/uco/apisolveit/domain/publicationtype/PublicationType.java,4\8\48132b65bc245efc987d625ddd45ed5af226f13b
+—
+gpublication-microservice/src/main/java/com/uco/apisolveit/publication/client/ReceiverMessageBroker.java,5\e\5e9186b2722638360d32cf02a4c425aa2670cf43
