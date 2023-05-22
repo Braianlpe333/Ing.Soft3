@@ -1,6 +1,6 @@
 
 header{
-    background: black;
+    background: rgb(66, 65, 65);
     padding: 0;
     border-bottom: 1px solid #3374ff;
     position: sticky;
@@ -24,8 +24,8 @@ a{
 }
 
 a:hover{
-    background: #3374ff;
-    color: white;
+    background: white;
+    color: black;
 }
 
 .container{
