@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -10,10 +9,12 @@ import { Observable } from 'rxjs';
 export class HomePageComponent {
   product: any;
   
+  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-      const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxNjg0Nzg5MzI2LCJleHAiOjE2ODQ4MjUzMjZ9.hbvo-LJ8nnxmA7ohjVfrNQdeh6CyvYRWbnFvqSrUYNg' }
+      const headers = { 'Authorization': 'Bearer '}
       let response = this.http.get<any>('api/v1/rest/publication', { headers });
       response.subscribe((data)=>this.product = this.product = data.data
       );

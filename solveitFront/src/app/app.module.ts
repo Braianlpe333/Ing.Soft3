@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { CreatePublicationComponent } from './create-publication/create-publication.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
     path:'regitro',
     component:RegistroComponent
   }
+  ,
+  {
+    path:'login',
+    component:LoginComponent
+  }
 ];
 @NgModule({
   declarations: [
@@ -32,7 +38,8 @@ const routes: Routes = [
     HeaderComponent,
     CreatePublicationComponent,
     HomePageComponent,
-    RegistroComponent
+    RegistroComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
