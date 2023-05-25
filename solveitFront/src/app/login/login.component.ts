@@ -26,8 +26,10 @@ export class LoginComponent {
       body.password = this.password;
 
       let response =this.http.post<any>('http://localhost:8088/authenticate/auth',body);
-      response.subscribe((data)=>this.token = data = data.token);
-      console.log(this.token);
+      response.subscribe((data)=>console.log(data)
+      );
+      console.log(response);
+      
       
     }
   }

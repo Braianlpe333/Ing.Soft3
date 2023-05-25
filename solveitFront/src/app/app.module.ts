@@ -10,6 +10,8 @@ import { CreatePublicationComponent } from './create-publication/create-publicat
 import { HomePageComponent } from './home-page/home-page.component';
 import { RegistroComponent } from './registro/registro.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './services/profile/profile.service';
 
 
 const routes: Routes = [
@@ -31,6 +33,23 @@ const routes: Routes = [
     path:'login',
     component:LoginComponent
   }
+  ,
+  {
+    path: 'profile',
+    component: ProfileComponent
+  }
+  ,
+  {
+    path:' ',
+    pathMatch: 'prefix',
+    redirectTo: 'home'
+  }
+  ,
+  {
+    path: '**',
+    pathMatch: 'prefix',
+    redirectTo: 'home'
+  }
 ];
 @NgModule({
   declarations: [
@@ -39,7 +58,8 @@ const routes: Routes = [
     CreatePublicationComponent,
     HomePageComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -49,7 +69,9 @@ const routes: Routes = [
     RouterModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ProfileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

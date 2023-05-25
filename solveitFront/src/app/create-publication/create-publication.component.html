@@ -18,9 +18,11 @@
         </div>
         <div class="form-grup">
             <label for="type">Categoria</label><br>
-            <select  name="type" ngModel  *ngFor="let item of publicationType">
-                <option value={{item.id}}>{{item.data}}</option>
+            <select  name="type" ngModel >
+                <option value="">Tipo de publicacion</option>
+                <option *ngFor="let type of type" [ngValue]="type.description">{{type.description}}</option>
             </select>
+            
         </div>
         <button class="btn btn-primary" type="submit">Publicar</button>
     </form>

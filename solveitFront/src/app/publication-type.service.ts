@@ -9,6 +9,8 @@ export class PublicationTypeService {
   constructor(private http:HttpClient){}
   
   public getType(){
-   return  this.http.get('http://localhost:8088/api/v1/rest/publicationType');
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxN…2OTV9.-f08BujjRsBrEYMKPYbGHZIX3yt3E8N6lpNbvpVtv8U'
+    const headers = { 'Authorization': 'Bearer '+token}
+   return  this.http.get<any>('api/v1/rest/publicationType',{headers});
   }
 }
