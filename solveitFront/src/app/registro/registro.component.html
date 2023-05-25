@@ -1,3 +1,27 @@
-<h1> hola perras</h1>
-<button>me la chupa</button>
+<form novalidate [formGroup]="user">
+  <label>
+    <span>Nombre completo</span>
+    <input type="text" placeholder="nombre completo" formControlName="name">
+  </label>
+  <label>
+    <span>Apellidos completos</span>
+    <input type="text" placeholder="Apellidos completos" formControlName="lastName">
+  </label>
+  <label>
+    <span>Email</span>
+    <input type="text" placeholder="ejemplo@dominio.com" formControlName="email">
+  </label>
+  <label>
+    <span>Contraseña</span>
+    <input type="password" placeholder="contraseña" formControlName="password">
+    <p class="erro" *ngIf="user.get('name').hasError('required') && user.get('name').touched"></p>
+  </label>
+  <label>
+    <span>Repita su Contraseña</span>
+    <input type="password" placeholder="contraseña" formControlName="passwordRepeat">
+  </label>
+  <label>
+    <input type="number" placeholder="1234567" formControlName="phoneNumber">
+  </label>
+</form>
 <a routerLink="/publication/create" routerLinkActive="active">Link</a>
