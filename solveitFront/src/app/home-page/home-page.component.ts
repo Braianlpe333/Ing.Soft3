@@ -16,8 +16,7 @@ export class HomePageComponent {
   ngOnInit() {
       const headers = { 'Authorization': 'Bearer '}
       let response = this.http.get<any>('api/v1/rest/publication', { headers });
-      response.subscribe((data)=>this.product = this.product = data.data
-      );
+      response.subscribe((data)=>this.product = data.data);
   }
 
 }
