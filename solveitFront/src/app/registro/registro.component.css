@@ -26,3 +26,9 @@ label{
   margin-top: 20px;
 
 }
+.error{
+  text-align: left;
+  font-weight: 100;
+  font-size: 15px;
+  background-color: red;
+}
