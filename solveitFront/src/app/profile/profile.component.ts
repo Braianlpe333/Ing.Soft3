@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile/profile.service';
+import {HttpClient} from '@angular/common/http'
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +9,8 @@ import { ProfileService } from '../services/profile/profile.service';
 })
 export class ProfileComponent implements OnInit{
 
-  public idUser:number = 0; // esta variable debe jalar del localstorage el ID del user luego de haberse logueado.
-  public listPostings!: any[]; //aqui se cargara cada post traido del back-end
+  public idUser:number = 0; 
+  public listPostings!: any[]; 
   public userName!:String;
 
   constructor(
