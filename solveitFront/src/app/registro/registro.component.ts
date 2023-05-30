@@ -53,7 +53,7 @@ export class RegistroComponent implements OnInit {
     var body2 = {username:"", password:""}
     body2.username = user.email;
     body2.password = user.password;
-    let response2 = this.http.post<any>("/api/v1/rest/user", body1, {headers})
+    let response2 = this.http.post<any>("/api/v1/rest/register", body1, {headers})
   }
 
 }
