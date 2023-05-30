@@ -51,13 +51,13 @@ export class RegistroComponent implements OnInit {
     body1.employmentField = this.user.get('employmentField')?.value;
     console.log(body1);
 
-    let response = this.http.post<any>("/api/v1/rest/user", body1, {headers})
+    let response = this.http.post<any>("api/v1/rest/user", body1, {headers})
 
 
     var body2 = {username:"", password:""}
     body2.username = this.user.get('email')?.value;
     body2.password = this.user.get('password')?.value;
-    let response2 = this.http.post<any>("/api/v1/rest/user", body2, {headers})
+    let response2 = this.http.post<any>("api/v1/rest/register", body2, {headers})
   }
 
 }
