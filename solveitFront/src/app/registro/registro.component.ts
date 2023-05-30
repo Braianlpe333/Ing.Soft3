@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import {HttpClient} from '@angular/common/http'
 export interface User{
   name :string;
@@ -57,3 +58,4 @@ export class RegistroComponent implements OnInit {
   }
 
 }
+
