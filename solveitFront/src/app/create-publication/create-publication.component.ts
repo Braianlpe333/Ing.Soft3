@@ -10,7 +10,7 @@ export class CreatePublicationComponent implements OnInit {
 
   submit(publication: any){
     console.log("Form submitted",publication.form.value);
-    
+
 
     const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxNjg0OTc5NDgxLCJleHAiOjE2ODUwMTU0ODF9.6YTeMKYU0o2ggcjlrrW_7ofrT9bZRiRRDU9vVNm4aTA'
     const headers = { 'Authorization': 'Bearer '+token}
@@ -24,17 +24,15 @@ export class CreatePublicationComponent implements OnInit {
     let response = this.http.post<any>('api/v1/rest/publication',body,{headers});
     response.subscribe((data)=>console.log(data)
     );
-    
+
   }
   constructor(private http:HttpClient){}
-  
+
   ngOnInit(): void{
     const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxNjg0OTc5NDgxLCJleHAiOjE2ODUwMTU0ODF9.6YTeMKYU0o2ggcjlrrW_7ofrT9bZRiRRDU9vVNm4aTA'
     const headers = { 'Authorization': 'Bearer '+token}
     let response = this.http.get<any>('api/v1/rest/publicationType',{headers});
     response.subscribe((data)=>this.type = data);
-    
-    
   }
 
 }
