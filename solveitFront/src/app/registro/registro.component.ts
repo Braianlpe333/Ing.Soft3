@@ -1,7 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-
 import {HttpClient} from '@angular/common/http'
 export interface User{
   name :string;
@@ -40,7 +39,7 @@ export class RegistroComponent implements OnInit {
 
   constructor(private http:HttpClient){}
   subtmit(user: any){
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxNjg0OTc5NDgxLCJleHAiOjE2ODUwMTU0ODF9.6YTeMKYU0o2ggcjlrrW_7ofrT9bZRiRRDU9vVNm4aTA'
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxNjg1NDE1MDI5LCJleHAiOjE2ODU0NTEwMjl9.v2ntpaWP1VaXuLpfUUd0EqSXDdZ69QvlxXUHkbtVK6I'
     const headers = { 'Authorization': 'Bearer '+token}
     var body1 = {name:"",surname:"",email:"",password:"",phone:"",employmentField:""}
     body1.name =  user.name;
@@ -54,8 +53,7 @@ export class RegistroComponent implements OnInit {
     var body2 = {username:"", password:""}
     body2.username = user.email;
     body2.password = user.password;
-    let response2 = this.http.post<any>("/api/v1/rest/register", body1, {headers})
+    let response2 = this.http.post<any>("/api/v1/rest/user", body2, {headers})
   }
 
 }
-
