@@ -26,11 +26,11 @@ export class LoginComponent {
       body.password = this.password;
 
       let response =this.http.post<any>('http://localhost:8088/authenticate/auth',body);
-      response.subscribe((data)=>console.log(data)
+      response.subscribe((data)=>this.token = data.token
       );
-      console.log(response);
-      
-      
+      console.log(this.token);
+      sessionStorage.setItem('token', this.token);
+    
     }
   }
 

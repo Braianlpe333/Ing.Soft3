@@ -25,8 +25,6 @@ Napp-solveit/src/main/java/com/uco/apisolveit/service/person/MessageSender.java
 Uapp-solveit/src/main/java/com/uco/apisolveit/repository/person/IPersonRepository.java,8\d\8d5adcdd143a806aa2d63c5396ea11e329114c6f
 ˆ
 Xapp-solveit/src/main/java/com/uco/apisolveit/service/publication/PublicationService.java,5\4\548bff3dfdbe97bbe5e2d820d7c0e70e90675de3
-Ž
-^app-solveit/src/main/java/com/uco/apisolveit/controller/publication/PublicationController.java,6\8\6869e59628643f260156f2fa2f0ea34965a9eca3
 ¨
 xpublication-microservice/src/main/java/com/uco/apisolveit/publication/repository/publication/IPublicationRepository.java,d\c\dcfb2ac68169f3f3cc8be62b1be29de9991441d4
 ¡
@@ -39,3 +37,5 @@ gpublication-microservice/src/main/java/com/uco/apisolveit/publication/client/Re
 Papp-solveit/src/main/java/com/uco/apisolveit/domain/publication/Publication.java,e\2\e26ed7e97a45ce710683583c12d350559606e749
 ˆ
 Xapp-solveit/src/main/java/com/uco/apisolveit/domain/publicationtype/PublicationType.java,4\8\48132b65bc245efc987d625ddd45ed5af226f13b
+q
+Aapp-solveit/src/main/java/com/uco/apisolveit/util/UtilString.java,3\3\339153f0f6fc27b9f8ff6ee008d4f15bbeaf5e50

@@ -14,7 +14,8 @@ export class HomePageComponent {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-      const headers = { 'Authorization': 'Bearer '}
+    const token = sessionStorage.getItem('token');
+      const headers = { 'Authorization': 'Bearer '+token}
       let response = this.http.get<any>('api/v1/rest/publication', { headers });
       response.subscribe((data)=>this.product = data.data);
   }
