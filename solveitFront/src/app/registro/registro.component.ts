@@ -35,12 +35,13 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-
+  
 
 
   constructor(private http:HttpClient){}
   subtmit(user1: any){
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJob2xhIiwiaWF0IjoxNjg1NTgzMDg0LCJleHAiOjE2ODU2MTkwODR9.53PRyur6BlhdXP_J8MeGQEgOLoBcuwl5Ko77kuYcpVk'
+    
+    const token = sessionStorage.getItem('token');
     const headers = { 'Authorization': 'Bearer '+token}
     var body1 = {name:"",surname:"",email:"",password:"",phone:0,employmentField:""}
     body1.name =  this.user.get('name')?.value;
@@ -51,7 +52,7 @@ export class RegistroComponent implements OnInit {
     body1.employmentField = this.user.get('employmentField')?.value;
 
     let response = this.http.post<any>("api/v1/rest/user", body1, {headers})
-    response.subscribe(data => console.log(data)
+    response.subscribe(data=> console.log(data)
     )
     
 
@@ -59,7 +60,7 @@ export class RegistroComponent implements OnInit {
     body2.username = this.user.get('email')?.value;
     body2.password = this.user.get('password')?.value;
     let response2 = this.http.post<any>("http://localhost:8088/authenticate/register", body2)
-    response2.subscribe(data => console.log(data))
+    
   }
 
 }
