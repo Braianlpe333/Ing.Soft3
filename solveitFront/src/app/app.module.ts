@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileService } from './services/profile/profile.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from './auth.service';
 
 
 const routes: Routes = [
@@ -21,7 +22,7 @@ const routes: Routes = [
     component:CreatePublicationComponent
   },
   {
-    path:'',
+    path:'home',
     component:HomePageComponent
   }
   ,
@@ -31,7 +32,7 @@ const routes: Routes = [
   }
   ,
   {
-    path:'login',
+    path:'',
     component:LoginComponent
   }
   ,
@@ -60,7 +61,7 @@ const routes: Routes = [
     HomePageComponent,
     RegistroComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -72,8 +73,9 @@ const routes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-    ProfileService
+    ProfileService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
