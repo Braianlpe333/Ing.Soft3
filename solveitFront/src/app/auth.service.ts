@@ -7,12 +7,16 @@ export class AuthService {
   isLoggedIn = false;
 
   login() {
-    // Lógica para autenticar al usuario
     this.isLoggedIn = true;
+    sessionStorage.setItem('isLoggedIn', String(this.isLoggedIn));
   }
 
   logout() {
     // Lógica para cerrar sesión
     this.isLoggedIn = false;
+    sessionStorage.setItem('isLoggedIn', String(this.isLoggedIn));
+  }
+  getIsLoggedIn(){
+    return this.isLoggedIn =  (sessionStorage.getItem('isLoggedIn')== "true");
   }
 }

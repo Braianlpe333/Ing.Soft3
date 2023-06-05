@@ -20,10 +20,6 @@ const routes: Routes = [
   {
     path:'publication/create',
     component:CreatePublicationComponent
-  },
-  {
-    path:'home',
-    component:HomePageComponent
   }
   ,
   {
@@ -33,7 +29,7 @@ const routes: Routes = [
   ,
   {
     path:'',
-    component:LoginComponent
+    component:HomePageComponent
   }
   ,
   {

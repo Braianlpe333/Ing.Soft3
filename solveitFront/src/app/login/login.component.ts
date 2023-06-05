@@ -32,9 +32,12 @@ export class LoginComponent {
       let response =this.http.post<any>('http://localhost:8088/authenticate/auth',body);
       response.subscribe((data)=>this.token = data.token
       );
-      console.log(this.token);
       sessionStorage.setItem('token', this.token);
-    
+      console.log(this.token);
+      
+      if(this.token != ''){
+        this.login();
+      }
     }
   }
   login() {
