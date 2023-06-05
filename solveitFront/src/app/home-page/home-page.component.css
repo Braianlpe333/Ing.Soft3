@@ -1,0 +1,29 @@
+.contenedor{
+  background: linear-gradient(#fefefe,#888888);
+}
+
+.Titulo{
+  font-size: 40px;
+  text-align: center;
+}
+
+.Edicion{
+  text-align: center;
+  border: 5px solid black;
+  border-radius: 10px;
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+.descripciones_generales{
+  font-size: 20px;
+}
+
+.datos{
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: large;
+}
