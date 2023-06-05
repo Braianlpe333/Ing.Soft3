@@ -34,23 +34,21 @@
     <div class="container-postings">
         
         <!-- Si no se carga nada, muestra mensaje donde no hay contenido -->
-        <h5 *ngIf="listPostings == undefined">Sin contenido que mostrar</h5> 
+        <h5 *ngIf="product == undefined">Sin contenido que mostrar</h5> 
 
         <!-- En caso de que SI cargue la info desde el back, mostrara las publicaciones del usuario. -->
-        <div class="content-postings" *ngIf="listPostings != undefined">
-            <div class="card-item" *ngFor="let item of listPostings">
-                <div class="card-title">
-                    <h5>{{item['title']}}</h5>
-                </div>
-                <div class="card-description">
-                    <p>{{item['description']}}</p>
-                </div>
-                <div class="card-phonenumber">
-                    <h5>{{item['phonenumber']}}</h5>
-                </div>
-                <div class="card-category">
-                    <h5>{{item['category']}}</h5>
-                </div>
+        <div class="content-postings" *ngIf="product != undefined">
+            <div class="contenido" *ngFor="let product of product">
+                <ul class="Edicion">
+                  <div class = "datos">
+                  {{ product.publicationTitle}}<br /></div>
+                  <div class = "datos"><br/><h3 class = "descripciones_generales">Descripcion</h3>
+                  {{ product.description}}<br /><br /></div>
+                  <div class = "datos"><br/><h3 class = "descripciones_generales">Contacto</h3>
+                  {{ product.phone}}<br /><br /></div>
+                  <div class = "datos"><br/><h3 class = "descripciones_generales">Categoria de Trabajo</h3>
+                  {{ product.category.description}}<br /><br /></div>
+                </ul>
             </div>
         </div>
     </div>

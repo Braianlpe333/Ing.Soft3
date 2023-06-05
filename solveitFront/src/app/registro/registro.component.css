@@ -5,6 +5,7 @@ form{
   justify-content: center;
   width: 100%;
   text-align: center;
+  background:linear-gradient(white,#85C1E9);  
 }
 input {
   width: 500px;

@@ -41,3 +41,5 @@ q
 Aapp-solveit/src/main/java/com/uco/apisolveit/util/UtilString.java,3\3\339153f0f6fc27b9f8ff6ee008d4f15bbeaf5e50
 Œ
 \app-solveit/src/main/java/com/uco/apisolveit/controller/jwt/JwtAuthenticationController.java,c\c\cc821eb134d05ea7d5438a8fb396f3e0beff353a
+z
+Japp-solveit/src/main/java/com/uco/apisolveit/config/WebSecurityConfig.java,b\d\bdbcc46bd8014252ce0aed1e3caf320706843da0
