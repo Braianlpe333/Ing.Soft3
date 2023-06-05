@@ -3,7 +3,7 @@
         <a href="#" routeLink="/" class="logo">
             <img src="../../assets/logosolveit.png" alt="Logo solveit" class="logosolveit">
         </a> 
-        <input class="busqueda" type="text" placeholder="busqueda">
+        <input class="busqueda" type="text" placeholder="Buscar..." (keyup)="onKeyUp($event)" [(ngModel)]="searchQuery">
         <nav>
             <ul class="szs">
                 <li>
