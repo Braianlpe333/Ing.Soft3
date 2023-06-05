@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile/profile.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,7 @@ export class ProfileComponent implements OnInit{
   public userName!:String;
 
   constructor(
-    private profileService: ProfileService
+    private profileService: ProfileService, private http: HttpClient
   ){}
 
   ngOnInit(): void {
@@ -27,8 +28,20 @@ export class ProfileComponent implements OnInit{
     });
   }
 
-  async deleteAccount(){}
+  async deleteAccount(){
+    const token = sessionStorage.getItem('token');
+    const userName = sessionStorage.getItem('userName');  
+    let response =this.http.delete('/api/v1/rest/user/'+userName);
+    if(response){
+      this.logOut();
+    }
+  }
 
-  async logOut(){}
+  async logOut(){
+    
+    sessionStorage.setItem('isRegisteredIn', 'false');
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.setItem('token', '');
+  }
 
 }
