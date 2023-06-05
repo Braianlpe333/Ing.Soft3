@@ -37,6 +37,7 @@ export class LoginComponent {
       
       if(this.token != ''){
         this.login();
+        sessionStorage.setItem('userName',this.username);
       }
     }
   }
