@@ -32,5 +32,7 @@
   <div>
     <button class="registro" type="submit" [disabled]="user.invalid">Registrar</button>
   </div>
+  <div>
+    <button class="registro" type="submit" (click)="login()">Iniciar sesion</button>
+  </div>
 </form>
-<a routerLink="/publication/create" routerLinkActive="active">Link</a>
