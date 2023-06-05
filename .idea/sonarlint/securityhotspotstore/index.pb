@@ -39,3 +39,5 @@ Papp-solveit/src/main/java/com/uco/apisolveit/domain/publication/Publication.jav
 Xapp-solveit/src/main/java/com/uco/apisolveit/domain/publicationtype/PublicationType.java,4\8\48132b65bc245efc987d625ddd45ed5af226f13b
 q
 Aapp-solveit/src/main/java/com/uco/apisolveit/util/UtilString.java,3\3\339153f0f6fc27b9f8ff6ee008d4f15bbeaf5e50
+Œ
+\app-solveit/src/main/java/com/uco/apisolveit/controller/jwt/JwtAuthenticationController.java,c\c\cc821eb134d05ea7d5438a8fb396f3e0beff353a

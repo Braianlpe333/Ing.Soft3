@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomePageComponent {
   product: any;
-  
-  
+
+
 
   constructor(private http: HttpClient) { }
 

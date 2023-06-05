@@ -27,8 +27,6 @@ a{
     
 }
 
-
-
 .container{
     margin: 0 auto;
     display: flex;
@@ -40,11 +38,13 @@ a{
 nav ul{
     list-style-type: none;
     margin: 0;
+    height: 100px;
 }
 
 nav ul li {
-    padding: 1em;
+    padding: 1rem;
     display: inline-block;
+    height: 100px;
 }
 .szs{
     display: flex;

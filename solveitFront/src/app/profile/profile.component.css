@@ -69,8 +69,17 @@ input, textarea{
 
 .btn-delete{
     background-color: #f44336;
+    cursor: pointer;
 }
 
 .btn-logout{
-    background-color: #555555; 
+    background-color: #555555;
+    cursor: pointer;
+}
+
+.btn-delete:hover{
+    background-color: #f37c73fd;
+}
+.btn-logout:hover{
+    background-color: #929292;
 }

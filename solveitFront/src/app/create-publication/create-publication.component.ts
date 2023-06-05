@@ -10,7 +10,6 @@ export class CreatePublicationComponent implements OnInit {
 
   submit(publication: any){
 
-
     const token = sessionStorage.getItem('token');
     const headers = { 'Authorization': 'Bearer '+token}
     var body = {publicationTitle:"", description:"", phone:"", categoryDescription:""};

@@ -1,5 +1,6 @@
 import { Component, Output , EventEmitter} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +8,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   token:string;
   username : string;
   password : string;
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.token = '';
     this.username = '';
     this.password = '';
   }
+
   ngOnInit() {}
   LoginUser() {
     if(this.username =="" && this.password ==""){
@@ -28,10 +32,19 @@ export class LoginComponent {
       let response =this.http.post<any>('http://localhost:8088/authenticate/auth',body);
       response.subscribe((data)=>this.token = data.token
       );
-      console.log(this.token);
       sessionStorage.setItem('token', this.token);
-    
+      console.log(this.token);
+      
+      if(this.token != ''){
+        this.login();
+        sessionStorage.setItem('userName',this.username);
+      }
     }
   }
-
+  login() {
+    this.authService.login();
+  }
+  RegisterUser(){
+    this.authService.register();
+  }
 }

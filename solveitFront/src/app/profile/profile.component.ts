@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit{
   }
 
   async initData(){
+    const token = sessionStorage.getItem('token');
     this.userName = "Nombre de usuario";
     let responseDataUser = await this.profileService.loadUserData(this.idUser).subscribe(res => {
       this.listPostings = res;

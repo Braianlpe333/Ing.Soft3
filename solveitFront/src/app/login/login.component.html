@@ -1,13 +1,18 @@
-<form>
-    <div class="input">
-        <label>Username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="username">
-    </div>
-    <div class="input">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="password">
-    </div>
-    <div class="input">
-        <input type="submit" class="btn btn-primary" value="Login" (click)="LoginUser()">
-    </div>
-</form>
+<div class="login">
+    <form class="custom-form">
+        <div class="input">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="username">
+        </div>
+        <div class="input">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="password">
+        </div>
+        <div >
+            <input type="submit" class="btn btn-primary" value="Login" (click)="LoginUser()">
+        </div>
+        <div >
+            <input type="submit" class="btn btn-primary" value="Register" (click)="RegisterUser()">
+        </div>
+    </form>
+</div>
