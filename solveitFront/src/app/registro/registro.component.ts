@@ -59,6 +59,7 @@ export class RegistroComponent implements OnInit {
     body2.username = this.user.get('email')?.value;
     body2.password = this.user.get('password')?.value;
     let response2 = this.http.post<any>("http://localhost:8088/authenticate/register", body2)
+    response2.subscribe(data=> console.log(data));
     
     if(response && response2){
       this.login();

@@ -48,7 +48,7 @@ public class PublicationController {
         responseEntity = new ResponseEntity<>(response,statusCode);
         return responseEntity;
     }
-    @GetMapping("/publication/title/{title}")   
+    @GetMapping("/publication/title/{title}")
     public ResponseEntity<Response<Publication>> getPublicationByTitle(@PathVariable("title") String title){
         ResponseEntity<Response<Publication>> responseEntity;
         List<String> messages = new ArrayList<>();
@@ -143,11 +143,11 @@ public class PublicationController {
     }
 
     @PostMapping("/publication")
-    public void postPublication(@RequestBody PublicationDTO publicationDTO){
-        /*return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
+    public ResponseEntity<String> postPublication(@RequestBody PublicationDTO publicationDTO){
+        return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
                 new  ResponseEntity<String>("savePublication",HttpStatus.CREATED))
-                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();*/
-        messageSenderBroker.execute(Publication.setData(publicationDTO),"1");
+                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();
+        //messageSenderBroker.execute(Publication.setData(publicationDTO),"1");
     }
 
     @PutMapping("/publication/{id}")

@@ -17,16 +17,22 @@ export class ProfileComponent implements OnInit{
     private profileService: ProfileService, private http: HttpClient
   ){}
   product: any;
+  user : any;
   ngOnInit(): void {
     this.initData();
   }
 
   async initData(){
     const token = sessionStorage.getItem('token');
+    const username = sessionStorage.getItem('userName')
     const headers = { 'Authorization': 'Bearer '+token}
     let response = this.http.get<any>('api/v1/rest/publication', { headers });
-    response.subscribe((data)=>this.product = data.data
-    );
+    let response1 = this.http.get<any>('api/v1/rest/user/'+username,{ headers })
+    response.subscribe((data)=>this.product = data.data);
+    response1.subscribe((data)=>this.user=data.data[0])
+    
+    
+    
   }
 
   async deleteAccount(){

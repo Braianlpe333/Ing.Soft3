@@ -3,7 +3,7 @@
   }
   html,
   body {
-    background: #ecf0f3;
+    background: #85C1E9;
   }
   h1 {
     margin: 0;
@@ -32,6 +32,24 @@
     box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
         rgba(0, 0, 0, 0.1);
     border: 0 none;
-    background: #ebf5fc;
+    background: #85C1E9;
+    color: black;
   }
-  
+  .custom-form input:hover{
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+  }
+  .login{
+    height: 120vh;
+    background: linear-gradient(white,#85C1E9);
+  }
+
+  .logosolveit {
+    display: block; 
+    margin: 0 auto; 
+    text-align: center; 
+    vertical-align: middle; 
+    margin-top: 30px;
+    border-radius: 100px;
+  }

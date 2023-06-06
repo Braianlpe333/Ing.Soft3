@@ -2,26 +2,33 @@
 
     <div class="content-profile">
 
-        <div class="profile-image">
-            <img src="../../assets/profile-icon.png" alt="profile-icon" />
-        </div>
+
         <div class="profile-description-content">
-
-            <label class="profile-name" name="profile-name">{{userName}}</label>
-            <div class="element">
-                <label>Descripcion</label>
-                <textarea class="description" name="description" placeholder="Ingrese una breve descripcion de usted"></textarea>
+            <div class="profile-image">
+                <img src="../../assets/profile-icon.png" alt="profile-icon" />
             </div>
+            <hr>
 
             <div class="element">
-                <label>Telefono</label>
-                <input type="tel" name="phonenumber" placeholder="Ingrese su numero telefonico">
+                <h2>Nombre:</h2>
+                <p>{{user.name}} {{user.surname}}</p>
+            </div>
+            <hr>
+            <div class="element">
+                <h2>Telefono:</h2>
+                <p>{{user.phone}}</p>
+            </div>
+            <hr>
+            <div class="element">
+                <h2>Correo:</h2>
+                <p>{{user.email}}</p>
+            </div>
+            <hr>
+            <div class="element">
+                <h1>Campo de empleo:</h1>
+                <p>{{user.employmentField}}</p>
             </div>
 
-            <div class="element">
-                <label>Ubicacion</label>
-                <input type="tel" name="phonenumber" placeholder="Ingrese su ubicacion">
-            </div>
 
         </div>
         <div class="container-profile-buttons">
