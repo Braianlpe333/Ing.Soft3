@@ -143,11 +143,11 @@ public class PublicationController {
     }
 
     @PostMapping("/publication")
-    public ResponseEntity<String> postPublication(@RequestBody PublicationDTO publicationDTO){
-        return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
+    public void postPublication(@RequestBody PublicationDTO publicationDTO){
+        /*return publicationService.save(Publication.setData(publicationDTO)).map(savePublication ->
                 new  ResponseEntity<String>("savePublication",HttpStatus.CREATED))
-                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();
-        //messageSenderBroker.execute(Publication.setData(publicationDTO),"1");
+                .defaultIfEmpty(new  ResponseEntity<>("Publication not found",HttpStatus.NOT_FOUND)).block();*/
+        messageSenderBroker.execute(Publication.setData(publicationDTO),"1");
     }
 
     @PutMapping("/publication/{id}")
