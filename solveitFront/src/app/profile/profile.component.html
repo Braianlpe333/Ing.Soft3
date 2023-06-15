@@ -2,26 +2,33 @@
 
     <div class="content-profile">
 
-        <div class="profile-image">
-            <img src="../../assets/profile-icon.png" alt="profile-icon" />
-        </div>
+
         <div class="profile-description-content">
-
-            <label class="profile-name" name="profile-name">{{userName}}</label>
-            <div class="element">
-                <label>Descripcion</label>
-                <textarea class="description" name="description" placeholder="Ingrese una breve descripcion de usted"></textarea>
+            <div class="profile-image">
+                <img src="../../assets/profile-icon.png" alt="profile-icon" />
             </div>
+            <hr>
 
             <div class="element">
-                <label>Telefono</label>
-                <input type="tel" name="phonenumber" placeholder="Ingrese su numero telefonico">
+                <h2>Nombre:</h2>
+                <p>{{user.name}} {{user.surname}}</p>
+            </div>
+            <hr>
+            <div class="element">
+                <h2>Telefono:</h2>
+                <p>{{user.phone}}</p>
+            </div>
+            <hr>
+            <div class="element">
+                <h2>Correo:</h2>
+                <p>{{user.email}}</p>
+            </div>
+            <hr>
+            <div class="element">
+                <h1>Campo de empleo:</h1>
+                <p>{{user.employmentField}}</p>
             </div>
 
-            <div class="element">
-                <label>Ubicacion</label>
-                <input type="tel" name="phonenumber" placeholder="Ingrese su ubicacion">
-            </div>
 
         </div>
         <div class="container-profile-buttons">
@@ -34,23 +41,21 @@
     <div class="container-postings">
         
         <!-- Si no se carga nada, muestra mensaje donde no hay contenido -->
-        <h5 *ngIf="listPostings == undefined">Sin contenido que mostrar</h5> 
+        <h5 *ngIf="product == undefined">Sin contenido que mostrar</h5> 
 
         <!-- En caso de que SI cargue la info desde el back, mostrara las publicaciones del usuario. -->
-        <div class="content-postings" *ngIf="listPostings != undefined">
-            <div class="card-item" *ngFor="let item of listPostings">
-                <div class="card-title">
-                    <h5>{{item['title']}}</h5>
-                </div>
-                <div class="card-description">
-                    <p>{{item['description']}}</p>
-                </div>
-                <div class="card-phonenumber">
-                    <h5>{{item['phonenumber']}}</h5>
-                </div>
-                <div class="card-category">
-                    <h5>{{item['category']}}</h5>
-                </div>
+        <div class="content-postings" *ngIf="product != undefined">
+            <div class="contenido" *ngFor="let product of product">
+                <ul class="Edicion">
+                  <div class = "datos">
+                  {{ product.publicationTitle}}<br /></div>
+                  <div class = "datos"><br/><h3 class = "descripciones_generales">Descripcion</h3>
+                  {{ product.description}}<br /><br /></div>
+                  <div class = "datos"><br/><h3 class = "descripciones_generales">Contacto</h3>
+                  {{ product.phone}}<br /><br /></div>
+                  <div class = "datos"><br/><h3 class = "descripciones_generales">Categoria de Trabajo</h3>
+                  {{ product.category.description}}<br /><br /></div>
+                </ul>
             </div>
         </div>
     </div>

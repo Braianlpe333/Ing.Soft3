@@ -30,6 +30,7 @@
     margin: 5vh 0vh;
 }
 
+
 input, textarea{
     width: 50vh;
     height: 5vh;
@@ -82,4 +83,16 @@ input, textarea{
 }
 .btn-logout:hover{
     background-color: #929292;
+}
+.contenido{
+    width: 60%;
+    margin: 2em;
+    border-radius: 25px;
+    border: 2px solid black;
+    background: rgb(66, 65, 65) ;
+    color: white;
+}
+.container-postings{
+    margin: 0;
+    background:linear-gradient(white,#85C1E9);
 }

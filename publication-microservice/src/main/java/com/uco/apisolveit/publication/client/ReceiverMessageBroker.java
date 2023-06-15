@@ -25,14 +25,15 @@ public class ReceiverMessageBroker {
     }
 
     @RabbitListener(queues = "${client.queue-recibir.cliente.queue-name}")
-    public Mono<Publication> receiveMessageProcessPerson(String message)  {
-        PublicationDTO dto = obtenerObjetoDeMensaje(message).get();
+    public Mono<Publication> receiveMessageProcessPerson(String message) {
         try{
+            PublicationDTO dto = obtenerObjetoDeMensaje(message).get();
             return publicationService.save(Publication.setData(dto));
         }catch(MongoException e){
-           throw e;
+            throw e;
         }
     }
+
 
     private Optional<PublicationDTO> obtenerObjetoDeMensaje(String mensaje){
         return mapperJsonObject.ejecutar(mensaje, PublicationDTO.class);

@@ -18,8 +18,6 @@ ipublication-microservice/src/main/java/com/uco/apisolveit/publication/dto/publi
 ™
 ipublication-microservice/src/main/java/com/uco/apisolveit/publication/domain/publication/Publication.java,4\6\4654448a34849d16f6ad64a8e96864c99d5ea222
 ~
-Napp-solveit/src/main/java/com/uco/apisolveit/service/person/PersonService.java,4\0\408b0e7c37435af84ff86888378fb3cdc98099f7
-~
 Napp-solveit/src/main/java/com/uco/apisolveit/service/person/MessageSender.java,f\9\f98bc7e779542874891ee4e8bac8b468ab9cd3db
 …
 Uapp-solveit/src/main/java/com/uco/apisolveit/repository/person/IPersonRepository.java,8\d\8d5adcdd143a806aa2d63c5396ea11e329114c6f
@@ -41,3 +39,11 @@ q
 Aapp-solveit/src/main/java/com/uco/apisolveit/util/UtilString.java,3\3\339153f0f6fc27b9f8ff6ee008d4f15bbeaf5e50
 Œ
 \app-solveit/src/main/java/com/uco/apisolveit/controller/jwt/JwtAuthenticationController.java,c\c\cc821eb134d05ea7d5438a8fb396f3e0beff353a
+z
+Japp-solveit/src/main/java/com/uco/apisolveit/config/WebSecurityConfig.java,b\d\bdbcc46bd8014252ce0aed1e3caf320706843da0
+„
+Tapp-solveit/src/main/java/com/uco/apisolveit/controller/person/PersonController.java,b\9\b9bf3c0e58d831e2f134b0399727ae7c477ebd0c
+~
+Napp-solveit/src/main/java/com/uco/apisolveit/service/person/PersonService.java,4\0\408b0e7c37435af84ff86888378fb3cdc98099f7
+Ž
+^app-solveit/src/main/java/com/uco/apisolveit/controller/publication/PublicationController.java,6\8\6869e59628643f260156f2fa2f0ea34965a9eca3

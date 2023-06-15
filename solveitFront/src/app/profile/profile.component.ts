@@ -16,13 +16,13 @@ export class ProfileComponent implements OnInit{
   constructor(
     private profileService: ProfileService
   ){}
-
+  product: any;
+  user : any;
   ngOnInit(): void {
     this.initData();
   }
 
   async initData(){
-    const token = sessionStorage.getItem('token');
     this.userName = "Nombre de usuario";
     let responseDataUser = await this.profileService.loadUserData(this.idUser).subscribe(res => {
       this.listPostings = res;

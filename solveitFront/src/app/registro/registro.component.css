@@ -5,6 +5,7 @@ form{
   justify-content: center;
   width: 100%;
   text-align: center;
+  background:linear-gradient(white,#85C1E9);  
 }
 input {
   width: 500px;
@@ -18,7 +19,7 @@ input {
 label{
   text-align: left;
   font-weight: 100;
-  font-size: 40px;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,4 +32,19 @@ label{
   font-weight: 100;
   font-size: 15px;
   background-color: red;
+}
+.registro{
+  margin-bottom: 10px;
+  width: 300px;
+  height: 5vh;
+  background-color: grey;
+  border: 3px solid black;
+  border-radius: 15px;
+  color: white;
+
+}
+.registro:hover{
+  background-color: black;
+  cursor: pointer;
+  border: 3px solid white;
 }
